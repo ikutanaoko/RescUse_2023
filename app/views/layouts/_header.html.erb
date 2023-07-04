@@ -1,0 +1,37 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container header-nav-box">
+      <%= link_to root_path do %>
+        <div class="svg_wrapper">
+          <%= embedded_svg('RescUse_white_1.svg', class: 'logo_svg') %>
+        </div>
+      <% end %>
+      <div>
+        <ul class="ml-auto mb-0">
+          <div class="navbar-nav ml-auto">
+            <div class="d-flex align-items-center">
+              <% if user_signed_in? %>
+                <p class="mb-0 text-light font-weight-bold"><%= current_customer.last_name %> ログイン中</p>
+              <% end %>
+            </div>
+            <div>
+              <div class="navbar-nav">
+
+                  <li><%= link_to "About", about_path, class: 'btn navbar-btn btn-outline-light' %></li>
+
+                  <li><%= link_to "新規登録",new_user_registration_path , class: 'btn navbar-btn btn-outline-light ml-3' %></li>
+                  <li><%= link_to "ログイン", new_user_session_path , class: 'btn navbar-btn btn-outline-light ml-3' %></li>
+                  <li><%= link_to destroy_user_session_path, method: :delete, class: 'btn navbar-btn btn-outline-light ml-3' do %>
+                    ログアウト
+                    <% end %>
+                  </li>
+
+              </div>
+
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

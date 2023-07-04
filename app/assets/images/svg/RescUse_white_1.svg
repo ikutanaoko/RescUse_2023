@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="178.24251mm"
+   height="74.624367mm"
+   viewBox="0 0 178.24251 74.624367"
+   version="1.1"
+   id="svg5"
+   inkscape:export-filename="ビットマップ2.svg"
+   inkscape:export-xdpi="92.021553"
+   inkscape:export-ydpi="92.021553"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="RescUse.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.74564395"
+     inkscape:cx="248.77825"
+     inkscape:cy="341.98628"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid9" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient1966"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop1964" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient1931"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop1929" />
+    </linearGradient>
+    <rect
+       x="221.28523"
+       y="108.63094"
+       width="322.40848"
+       height="117.36979"
+       id="rect410" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-13.066021,-16.001092)">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.65637989,0,0,1.3005634,-132.65707,-166.72514)"
+       id="text408"
+       style="font-size:96px;white-space:pre;shape-inside:url(#rect410);display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-opacity:1"><tspan
+         x="221.28516"
+         y="196.21457"
+         id="tspan1281"><tspan
+           style="font-size:83.614px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, '"
+           id="tspan1273">R</tspan><tspan
+           style="font-size:74.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, '"
+           id="tspan1275">esc</tspan><tspan
+           style="font-size:83.614px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, '"
+           id="tspan1277">U</tspan><tspan
+           style="font-size:74.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, '"
+           id="tspan1279">se</tspan></tspan></text>
+  </g>
+</svg>
