@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_04_104607) do
+ActiveRecord::Schema.define(version: 2023_07_04_140713) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,8 +25,75 @@ ActiveRecord::Schema.define(version: 2023_07_04_104607) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "user_id", null: false
+    t.text "body", null: false
+    t.integer "parent_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "departments", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visiter_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "product_id"
+    t.integer "parent_id"
+    t.string "action"
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "product_tags", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_tags_on_product_id"
+    t.index ["tag_id"], name: "index_product_tags_on_tag_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer "giver_id", null: false
+    t.string "name", null: false
+    t.string "detail_page"
+    t.text "infomation", null: false
+    t.integer "price", null: false
+    t.integer "count", null: false
+    t.boolean "is_closed", default: false, null: false
+    t.boolean "is_used", default: false, null: false
+    t.integer "taker_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "active_score"
+    t.integer "passive_score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_scores_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -45,4 +112,9 @@ ActiveRecord::Schema.define(version: 2023_07_04_104607) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
+  add_foreign_key "product_tags", "products"
+  add_foreign_key "product_tags", "tags"
+  add_foreign_key "scores", "users"
 end

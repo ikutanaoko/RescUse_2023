@@ -4,4 +4,6 @@ class Product < ApplicationRecord
   has_many :product_tags
   has_many :tags, throught: :product_tags
   has_many :favorites, dependent: :destroy
+  has_many :comment
+  
 end

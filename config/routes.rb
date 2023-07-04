@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
   
-
-  namespace :admin do
-    get 'users/show'
-    get 'users/edit'
-  end
   namespace :public do
-    get 'users/show'
-    get 'users/edit'
+    get 'notifications/index'
   end
   # 社員用
   devise_for :users,skip: [:passwords], controllers: {
@@ -26,9 +20,12 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about', as: 'about'
     get '/index' => 'homes#index', as: 'index'
+    get '/searchs' => 'searchs#search'
+    resources :favorites, only: [:index]
+    resources :comments, only: [:index]
     resources :products, only: [:new,:create,:show,:edit,:update] do
       resource :favorites, only: [:create, :destroy]
-      
+      resources :comments, only: [:create, :destroy, :show]
     end
     get '/new_products' => 'products#new_index'
     get '/used_products' => 'products#used_index'
@@ -37,7 +34,11 @@ Rails.application.routes.draw do
     get 'users/information/edit' => 'users#edit'
     patch 'users/information' => 'users#update'
     get 'users/products_index' => 'users#products_index'
-    resources :favorites, only: [:index]
+    resources :notifications, only: [:index, :destroy] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
   end
   
   # 管理者用
@@ -50,6 +51,7 @@ Rails.application.routes.draw do
       collection do
         get 'search' => 'products#search'
       end
+      resources :comments, only: [:destroy, :show]
     end
     resources :tags, only: [:index,:edit,:create,:update, :destroy]
     resources :users, only: [:index,:show,:edit,:update]
