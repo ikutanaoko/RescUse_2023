@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_many :scores
   has_many :products, foreign_key: :giver_id
   has_many :products, foreign_key: :taker_id
-  
+  has_many :favorites, dependent: :destroy
   
 end

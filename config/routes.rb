@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   
 
+  namespace :admin do
+    get 'users/show'
+    get 'users/edit'
+  end
+  namespace :public do
+    get 'users/show'
+    get 'users/edit'
+  end
   # 社員用
   devise_for :users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -18,9 +26,18 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about', as: 'about'
     get '/index' => 'homes#index', as: 'index'
-    resources :products, only: [:new,:create:show,:edit,:update]
+    resources :products, only: [:new,:create,:show,:edit,:update] do
+      resource :favorites, only: [:create, :destroy]
+      
+    end
     get '/new_products' => 'products#new_index'
     get '/used_products' => 'products#used_index'
+    resources :tags, only: [:show]
+    get 'users' => 'users#show'
+    get 'users/information/edit' => 'users#edit'
+    patch 'users/information' => 'users#update'
+    get 'users/products_index' => 'users#products_index'
+    resources :favorites, only: [:index]
   end
   
   # 管理者用
@@ -29,7 +46,13 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
     get '/result'  => 'homes#result'
     resources :departments, only: [:index,:show,:edit,:create,:update, :destroy]
-    resources :products, only: [:index,:show,:edit,:update,:destroy]
+    resources :products, only: [:index,:show,:edit,:update,:destroy] do
+      collection do
+        get 'search' => 'products#search'
+      end
+    end
+    resources :tags, only: [:index,:edit,:create,:update, :destroy]
+    resources :users, only: [:index,:show,:edit,:update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
