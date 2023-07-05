@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'notifications/index'
-  end
+
   # 社員用
   devise_for :users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
