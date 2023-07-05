@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 2023_07_04_140713) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
-    t.string "empeloyee_number", null: false
+    t.string "employee_number", null: false
     t.integer "department_id", null: false
     t.boolean "is_deleted", default: false, null: false
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

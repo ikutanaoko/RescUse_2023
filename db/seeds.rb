@@ -10,3 +10,5 @@ Admin.create!(
    name: '111111',
    password: '111111'
 )
+
+Department.create(name: "総務部人事課")
