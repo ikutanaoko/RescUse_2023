@@ -26,13 +26,13 @@ class Admin::DepartmentsController < ApplicationController
   def update
     department = Department.find(params[:id])
     department.update(department_params)
-    redirect_to admin_departments_path notice: "データの追加に成功しました。"
+    redirect_to admin_departments_path notice: "データの更新に成功しました。"
   end
 
 #削除機能は未実装
-  
+
   private
-  
+
   def department_params
   params.require(:department).permit(:name)
   end
