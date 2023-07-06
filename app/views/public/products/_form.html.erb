@@ -1,7 +1,7 @@
 
   <div class="col-6 mx-auto">
   <%= render 'layouts/error_messages', obj: product %>
-  <%= form_with model: [:admin, product], local:true do |f| %>
+  <%= form_with model: product, local:true do |f| %>
     <table class="table table-borderless">
       <thead>
         <th style="width: 35%"></th>
@@ -15,7 +15,7 @@
 
         <tr class="form-group">
           <td><%= f.label :name, '製品名/型式' %></td>
-          <td><%= f.text_field :name, placeholder: "製品名/型式", class: "col-12" %></td>
+          <td><%= f.text_field :name, class: "col-12" %></td>
         </tr>
 
 
@@ -31,13 +31,9 @@
         
         <tr class="form-group">
         <td><%= f.label :count, '数量' %></td>
-        <td><%= f.text_field :count, placeholder: "10", class: "col-12" %>個</td>
+        <td><%= f.text_field :count, placeholder: "10", class: "col-11" %>個</td>
         </tr>
         
-        <tr class="form-group">
-          <td><%= f.label :genre_id, 'ジャンル' %></td>
-          <td><%= f.select :genre_id, @genres, { include_blank: "--選択してください--"}, class: "col-12 form-select" %></td>
-        </tr>
 
         <tr class="form-group">
           <td><%= f.label :is_used, '備品状況' %></td>

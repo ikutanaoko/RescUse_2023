@@ -9,10 +9,11 @@ class Admin::TagsController < ApplicationController
   def create
     @tag = Tag.new(department_params)
     if @tag.save
-      redirect_to admin_tags_path notice: "データの追加に成功しました。"
+      flash[:notice] = "データの追加に成功しました"
+      redirect_to admin_tags_path
     else
       @tag = Tag.all
-      remder :index
+      render :index
     end
   end
 
@@ -26,7 +27,8 @@ class Admin::TagsController < ApplicationController
   def update
     tag = Tag.find(params[:id])
     tag.update(tag_params)
-    redirect_to admin_tags_path notice: "データの更新に成功しました。"
+    flash[:notice] = "データの更新に成功しました"
+    redirect_to admin_tags_path
   end
 
 #削除機能は未実装

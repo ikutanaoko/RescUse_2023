@@ -1,5 +1,5 @@
 class Public::ProductsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user!
 
 
   def new_index
@@ -11,6 +11,7 @@ class Public::ProductsController < ApplicationController
   def
 
   def show
+    @product = Product.find(params[:id])
   end
 
   def new
@@ -18,7 +19,14 @@ class Public::ProductsController < ApplicationController
   end
 
   def create
-    @product = Product
+    @product = Product.new(product_params)
+    @product.giver_id = current_user.id
+    if @product.save!
+      flash[:notice] = "新規投稿を行いました"
+      redirect_to product_path(@product)
+    else
+
+    end
     
   end
   

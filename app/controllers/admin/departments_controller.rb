@@ -9,10 +9,11 @@ class Admin::DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
     if @department.save
-      redirect_to admin_departments_path notice: "データの追加に成功しました。"
+      flash[:notice] = "データの追加に成功しました"
+      redirect_to admin_departments_path
     else
       @departments = Department.all
-      remder :index
+      render :index
     end
   end
 
@@ -26,7 +27,8 @@ class Admin::DepartmentsController < ApplicationController
   def update
     department = Department.find(params[:id])
     department.update(department_params)
-    redirect_to admin_departments_path notice: "データの更新に成功しました。"
+    flash[:notice] = "データの更新に成功しました"
+    redirect_to admin_departments_path
   end
 
 #削除機能は未実装
