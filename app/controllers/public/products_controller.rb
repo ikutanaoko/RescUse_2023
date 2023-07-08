@@ -11,11 +11,13 @@ class Public::ProductsController < ApplicationController
   def
 
   def show
+
     @product = Product.find(params[:id])
   end
 
   def new
     @product = Product.new
+    @tags = Tag.all
   end
 
   def create
@@ -40,7 +42,7 @@ class Public::ProductsController < ApplicationController
 
   def product_params
   params.require(:product).permit(:giver_id, :name, :detail_page, :information, :price, :count, 
-  :is_closed, :is_used, :taker_id)
+  :is_closed, :is_used, :taker_id, tag_ids: [])
   end
 
 

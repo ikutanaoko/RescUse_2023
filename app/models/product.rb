@@ -6,4 +6,13 @@ class Product < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comment
   
+  
+  def status
+    if is_used == true
+      "開封済備品"
+    else
+      "未開封備品"
+    end
+  end
+  
 end
