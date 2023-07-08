@@ -8,11 +8,9 @@ class Public::ProductsController < ApplicationController
   def used_index
   end
 
-  def
-
   def show
-
     @product = Product.find(params[:id])
+
   end
 
   def new
@@ -29,19 +27,19 @@ class Public::ProductsController < ApplicationController
     else
 
     end
-    
+
   end
-  
+
   def edit
   end
 
   def update
   end
-  
+
   private
 
   def product_params
-  params.require(:product).permit(:giver_id, :name, :detail_page, :information, :price, :count, 
+  params.require(:product).permit(:giver_id, :name, :detail_page, :information, :price, :count,
   :is_closed, :is_used, :taker_id, tag_ids: [])
   end
 
