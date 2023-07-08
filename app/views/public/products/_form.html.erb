@@ -34,6 +34,15 @@
         <td><%= f.text_field :count, placeholder: "10", class: "col-11" %>個</td>
         </tr>
         
+        <tr class="form-group">
+          <td>
+            <%= f.label :tag_ids, 'タグ' %>
+            <%= f.collection_check_boxes :tag_ids, @tags, :id, :name do |b| %>
+            <div><%= b.check_box %><%= b.label %></div>
+            <% end %>
+          </td>
+        </tr>
+        
 
         <tr class="form-group">
           <td><%= f.label :is_used, '備品状況' %></td>
