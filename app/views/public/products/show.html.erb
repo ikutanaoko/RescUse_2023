@@ -6,3 +6,10 @@
 <p><%= @product.count %></p>
 <p><%= @product.status %></p>
 <p><%= @product.tags.pluck(:name).join(' / ') %></p>
+
+<div id="comments_area" >
+  <%= render 'comments/index', comments: @comments %>
+  <% if user_signed_in? %>
+    <%= render 'comments/form', product: @product, comment: @comment %>
+  <% end %>
+</div>

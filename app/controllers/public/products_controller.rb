@@ -10,6 +10,10 @@ class Public::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @user = @product.user
+    @comments = @product.comments.order(created_at: :desc)
+    @comment = Comment.new
+    @comment_reply = @product.comments.new
 
   end
 
@@ -22,7 +26,7 @@ class Public::ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.giver_id = current_user.id
     if @product.save!
-      flash[:notice] = "新規投稿を行いました"
+      flash[:notice] = "新規の投稿を行いました。"
       redirect_to product_path(@product)
     else
 

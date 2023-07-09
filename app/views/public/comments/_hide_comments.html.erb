@@ -1,0 +1,15 @@
+<div class="container">
+   <div class="row d-flex align-items-center pb-3" >
+      <div class="col">
+        <%= comment.user.name %>さん　<%= comment.created_at.strftime('%Y/%m/%d') %>
+      </div>
+      <div class="card">
+        <% comment.body %>
+      </div>
+      <hr>
+        <% if comment.user == current_user %>
+          <%= link_to"削除", product_comment_path(comment.product_id, comment.id), method: :delete, remote:true  %>
+        
+        <% end %>
+    </div>
+</div>
