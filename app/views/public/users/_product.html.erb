@@ -1,0 +1,8 @@
+<% products.first(3).each do |product| %>
+  <div class="card-body border rounded mb-3">
+    <tr>
+    <th><%=link_to product.name, product_path(product) %>:</th>
+    <td class:"text-truncate"><%= product.information %></td>
+    </tr>
+  </div>
+<% end %>
