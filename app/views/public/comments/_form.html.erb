@@ -1,0 +1,8 @@
+<div class="mb-5 pb-5">
+<%= form_with model: [product, comment], local: false do |f| %>
+  <div class="form-group">
+    <%= f.text_area :body, rows: '2', placeholder:"コメントをここに", class:"form-control" %>
+    <%= f.submit "送信する", class:"mt-1" %>
+  </div>
+<% end %>
+</div>
