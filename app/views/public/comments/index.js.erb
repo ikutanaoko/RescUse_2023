@@ -1,2 +1,2 @@
-$("#comments_area").html("<%= j(render 'public/comments/index',  comments: @comments) %>");
+$("#comments_area").html("<%= j(render 'public/comments/index',  comments: @comments, comment_reply: @comment_reply, product: @product) %>");
 $("textarea").val('');

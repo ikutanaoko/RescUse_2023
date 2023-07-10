@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+    before_action :authenticate_user!
+  
   def index
   end
 
@@ -7,7 +9,7 @@ class Public::CommentsController < ApplicationController
     @comment = @product.comment.new(comment_params)
     @comment.user_id = current_user.id
     @comments = @product.comment.order(created_at: :desc)
-    # @comment_reply = @product.comment.new
+    @comment_reply = @product.comment.new(comment_params)
     if @comment.save!
       flash.now[:notice] = "コメントの投稿に成功しました。"
       render :index
@@ -22,11 +24,11 @@ class Public::CommentsController < ApplicationController
   
   
   def destroy
+    
     @product = Product.find(params[:product_id])
     @comment = Comment.find(params[:id])
     @comments = @product.comment.order(created_at: :desc)
-
-    # @comment_reply = @product.comment.new
+    @comment_reply = @product.comment.new
     if @comment.destroy
       flash.now[:notice] = "コメントを削除しました。"
       render :index

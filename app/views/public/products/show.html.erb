@@ -1,17 +1,41 @@
-<h1>Public::Products#show</h1>
 <div class="container">
   <div class="row">
-    <div class="col-6">
-      <p><%= @product.name %></p>
-      <p><%= @product.information %></p>
-      <p><%= @product.price %></p>
-      <p><%= @product.count %></p>
-      <p><%= @product.status %></p>
-      <p><%= @product.tags.pluck(:name).join(' / ') %></p>
+    <div class="col-md-6 col-12">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>型式・品名</th><td><%= @product.name %></td>
+          </tr>
+          <tr>
+            <th>詳細</th><td><%= @product.information %><td>
+          </tr>
+          <tr>
+            <th>税抜き価格</th><td><%= @product.price %><td>
+          </tr>
+          <tr>
+            <th>個数</th><td><%= @product.count %><td>
+          </tr>
+          <tr>
+            <td><%= @product.status %></td>
+          </tr>
+          <tr>
+            <td><%= @product.tags.pluck(:name).join(' / ') %></td>
+          </tr>
+        </tbody>
+      </table>
+            <h3 id="favorite_buttons">
+              <%= render "public/favorites/favorite-btn", product: @product %>
+            </h3>       
     </div>
-    <div class="col-5 offset-1">
+    <div class="col-md-5 offset-md-1 col-12">
       <div id="comments_area" >
-        <%= render 'public/comments/index', comments: @comments %>
+        <%= render 'public/comments/index', comments: @comments, comment_reply: @comment_reply, product: @product %>
       </div>
       <% if user_signed_in? %>
         <%= render 'public/comments/form', product: @product, comment: @comment %>
