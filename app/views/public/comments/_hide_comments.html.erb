@@ -1,15 +1,20 @@
 <div class="container">
-   <div class="row d-flex align-items-center pb-3" >
-      <div class="col">
-        <%= comment.user.name %>さん　<%= comment.created_at.strftime('%Y/%m/%d') %>
-      </div>
-      <div class="card">
-        <% comment.body %>
-      </div>
-      <hr>
-        <% if comment.user == current_user %>
-          <%= link_to"削除", product_comment_path(comment.product_id, comment.id), method: :delete, remote:true  %>
-        
-        <% end %>
+  <div class="row d-flex align-items-center pb-3" >
+    <div class="col">
+      <%= comment.user.name %>さん　
     </div>
+    <div class="col d-flex justify-content-end">
+      <%= comment.created_at.strftime('%Y/%m/%d') %>
+    </div>  
+  </div>    
+  <div class="card-body border rounded mb-3">
+    <%= comment.body %>
+  </div>
+  <hr class="d-none">
+    <% if comment.user == current_user %>
+      <div class="text-right">
+        <%= link_to"削除", product_comment_path(comment.product, comment), method: :delete, remote:true  %>
+      </div>
+    <% end %>
+  <hr>
 </div>

@@ -10,10 +10,10 @@ class Public::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @user = @product.user
-    @comments = @product.comments.order(created_at: :desc)
+    @user = @product.giver
+    @comments = @product.comment.order(created_at: :desc)
     @comment = Comment.new
-    @comment_reply = @product.comments.new
+    @comment_reply = @product.comment.new
 
   end
 

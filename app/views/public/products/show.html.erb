@@ -1,15 +1,21 @@
 <h1>Public::Products#show</h1>
-
-<p><%= @product.name %></p>
-<p><%= @product.information %></p>
-<p><%= @product.price %></p>
-<p><%= @product.count %></p>
-<p><%= @product.status %></p>
-<p><%= @product.tags.pluck(:name).join(' / ') %></p>
-
-<div id="comments_area" >
-  <%= render 'comments/index', comments: @comments %>
-  <% if user_signed_in? %>
-    <%= render 'comments/form', product: @product, comment: @comment %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <p><%= @product.name %></p>
+      <p><%= @product.information %></p>
+      <p><%= @product.price %></p>
+      <p><%= @product.count %></p>
+      <p><%= @product.status %></p>
+      <p><%= @product.tags.pluck(:name).join(' / ') %></p>
+    </div>
+    <div class="col-5 offset-1">
+      <div id="comments_area" >
+        <%= render 'public/comments/index', comments: @comments %>
+      </div>
+      <% if user_signed_in? %>
+        <%= render 'public/comments/form', product: @product, comment: @comment %>
+      <% end %>
+    </div>
+  </div>
 </div>
