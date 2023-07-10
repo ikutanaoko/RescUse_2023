@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :products, foreign_key: :taker_id
   has_many :favorites, dependent: :destroy
   has_many :comment
+  has_many :read_counts, dependent: :destroy
   
  # No use email
   def email_required?

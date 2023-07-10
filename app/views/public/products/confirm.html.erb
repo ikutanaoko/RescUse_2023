@@ -1,0 +1,8 @@
+<h2 class="pt-5">下記備品を引き取りますか？</h2>
+    <p>
+      引取確定後は担当者間で直接やり取り、引き渡しをお願いいたします。<br>
+      取引完了後は管理部門までお知らせください。<br>
+      取引を続ける場合は、「引き取る」をクリックしてください。
+    </p>
+    <%= link_to "戻る", product_path(@product), class:"btn btn-primary btn-md" %>
+    <%= link_to "引き取る",  take_over_product_path(@product), method: :patch, class:"btn btn-danger btn-md" %>

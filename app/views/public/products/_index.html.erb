@@ -1,0 +1,23 @@
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th>購入者名</th>
+      <th>型式・品名</th>
+      <th>税抜価格</th>
+      <th>個数</th>
+      <th>閲覧数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% products.each do |product| %> 
+    <tr>
+      <td><%= product.giver.name %>(<%= product.giver.department.name %>)</td>
+  　　<td><%=link_to product.name, product_path(product) %></td>
+      <td><%= product.price.to_s(:delimited) %></td>
+      <td><%= product.count %></td>
+      <td><%= product.read_counts.count %></td>  
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+      
