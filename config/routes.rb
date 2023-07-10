@@ -24,7 +24,12 @@ Rails.application.routes.draw do
     resources :products, only: [:new,:create,:show,:edit,:update] do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy, :show]
+      member do
+        get 'confirm'
+        patch 'take_over'
+      end
     end
+    
     get '/new_products' => 'products#new_index'
     get '/used_products' => 'products#used_index'
     resources :tags, only: [:show]

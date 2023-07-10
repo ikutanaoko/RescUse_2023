@@ -43,15 +43,17 @@
           </td>
         </tr>
         
+      <% unless local_assigns[:edit].present? %>
 
         <tr class="form-group">
           <td><%= f.label :is_used, '備品状況' %></td>
           <td><%= f.radio_button :is_used, false %>
             <%= f.label :is_used, '未開封', value: false %>
-            <%= f.radio_button :is_used, true, checked: true %>
+            <%= f.radio_button :is_used, true %>
             <%= f.label :is_used, '開封済', value: true %>
           </td>
         </tr>
+      <% end %>
       </tbody>
     </table>
     <div class="text-center mb-5">

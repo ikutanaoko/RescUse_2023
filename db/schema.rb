@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_06_150436) do
+ActiveRecord::Schema.define(version: 2023_07_10_141637) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -83,6 +83,15 @@ ActiveRecord::Schema.define(version: 2023_07_06_150436) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "read_counts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_read_counts_on_product_id"
+    t.index ["user_id"], name: "index_read_counts_on_user_id"
+  end
+
   create_table "scores", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "active_score"
@@ -116,5 +125,7 @@ ActiveRecord::Schema.define(version: 2023_07_06_150436) do
   add_foreign_key "comments", "users"
   add_foreign_key "product_tags", "products"
   add_foreign_key "product_tags", "tags"
+  add_foreign_key "read_counts", "products"
+  add_foreign_key "read_counts", "users"
   add_foreign_key "scores", "users"
 end

@@ -1,2 +1,47 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<h1>My page</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <h3 class="mypage_content">新着通知</h3>
+      <h3 class="mypage_content">ランキング</h3>
+      <div class="mypage_content">
+        <h3>投稿履歴</h3>
+          <% @user_products.last(2).each do |product| %>
+          <div class="card-body border rounded mb-3">
+          <%= link_to product.name, product_path(product) %>
+          <%= product.created_at.strftime('%Y/%m/%d') %>
+          </div>
+        <% end %>
+      </div>
+      <div class="mypage_content">
+        <h3>引取履歴</h3>
+        <% @take_products.first(2).each do |product| %>
+          <div class="card-body border rounded mb-3">
+          <%= link_to product.name, product_path(product) %>
+          <%= product.updated_at.strftime('%Y/%m/%d') %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+    <div class="col-7">
+      <div class="mypage_content">
+        <h3>新着の未開封備品</h3>
+        <%= render 'product', products:@new_products %>
+        <div class="text-right">
+          <%= link_to "もっと見る...", new_products_path %>
+        </div>
+      </div>
+      </span>
+      <div class="mypage_content">
+        <h3>新着の開封済備品</h3>
+        <%= render 'product', products:@used_products %>
+        <div class="text-right">
+          <%= link_to "もっと見る...", used_products_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>

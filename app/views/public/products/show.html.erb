@@ -16,7 +16,7 @@
             <th>詳細</th><td><%= @product.information %><td>
           </tr>
           <tr>
-            <th>税抜き価格</th><td><%= @product.price %><td>
+            <th>税抜き価格</th><td><%= @product.price.to_s(:delimited) %><td>
           </tr>
           <tr>
             <th>個数</th><td><%= @product.count %><td>
@@ -29,9 +29,15 @@
           </tr>
         </tbody>
       </table>
-            <h3 id="favorite_buttons">
-              <%= render "public/favorites/favorite-btn", product: @product %>
-            </h3>       
+      <h3 id="favorite_buttons">
+        <%= render "public/favorites/favorite-btn", product: @product %>
+      </h3>
+      <% if @product.giver_id == current_user.id %>
+        <%= link_to "編集する", edit_product_path %>
+      <% end %>
+      <% if @product.is_closed == false %>
+        <%= link_to "引き取る", confirm_product_path, class: "btn btn-success" %>
+      <% end %>
     </div>
     <div class="col-md-5 offset-md-1 col-12">
       <div id="comments_area" >
