@@ -1,2 +1,57 @@
 <h1>Public::Products#new</h1>
+<hr>
+<hr>
+
+<input type="text" id="search_area">
+<button type="button" id="search_button">検索</button>
+<ul></ul>
+
+<hr>
+<hr>
+    
+<div class="container">
+<div class="row">  
+
 <%= render 'form', product: @product %>
+
+  <div class="col-6 search-box">
+    <%= form_with url: new_product_path, method: :get, local:true do |f| %>
+    <div class="form-group">
+      <%= f.text_field :keyword, value: params[:keyword], class: "form-control" %>
+      <%= f.submit '製品を検索', class: "form-control btn btn-success" %>
+    </div>
+    <% end %>
+    
+    <% if @items.present? %>
+      <% @items.first(5).each do |item| %>
+      <div class="list-group">
+        <%= image_tag (item['mediumImageUrls'][0]), size: "100x100" %>
+        <%= link_to item.name, "#{item.url}" %>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  
+  
+  </div>
+</div>
+
+
+<script>
+  $(function(){
+    $('#search_button').on('click', function(){
+      var keyword = $('#search_area').val();
+      $.get('https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601?', {
+        applicationID: ENV['RAKUTEN_API_KEY'],
+        keyword: keyword
+      },function(data){
+        if (data.count > 0){
+          $.each(data.Items,function(i,item){
+            var temp = $(`&lt;li>&lt;a href="${item.Item.itemUrl}">&lt;img src="${item.Item.mediumImageUrls[0].imageUrl}">&lt;/a>&lt;/li>`);
+            $('ul').append(temp);
+          })
+        }
+      });
+    });
+  });
+</script>

@@ -1,6 +1,6 @@
 class Public::CommentsController < ApplicationController
     before_action :authenticate_user!
-  
+
   def index
   end
 
@@ -16,15 +16,15 @@ class Public::CommentsController < ApplicationController
     else
       flash.now[:alert] = "コメントの投稿に失敗しました。"
       render :index
-    end    
-  end  
-    
+    end
+  end
+
   def show
   end
-  
-  
+
+
   def destroy
-    
+
     @product = Product.find(params[:product_id])
     @comment = Comment.find(params[:id])
     @comments = @product.comment.order(created_at: :desc)
@@ -34,10 +34,10 @@ class Public::CommentsController < ApplicationController
       render :index
     end
   end
-  
+
    private
     def comment_params
       params.require(:comment).permit(:body, :user_id, :product_id, :parent_id)
     end
-  
+
 end

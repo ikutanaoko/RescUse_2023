@@ -28,6 +28,10 @@ class Public::ProductsController < ApplicationController
   def new
     @product = Product.new
     @tags = Tag.all
+    if params[:keyword]
+      @items = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
+    end
+    
   end
 
   def create
