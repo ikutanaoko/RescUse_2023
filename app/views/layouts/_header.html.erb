@@ -1,31 +1,39 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<header class="header">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container header-nav-box">
       <%= link_to root_path do %>
         <div class="svg_wrapper">
-          <%= embedded_svg('RescUse_white_1.svg', class: 'logo_svg') %>
+          <%= embedded_svg('RescUse_black_1.svg', class: 'logo_svg') %>
         </div>
       <% end %>
       <div>
         <ul class="ml-auto mb-0">
           <div class="navbar-nav ml-auto">
-            <div class="d-flex align-items-center">
-              <% if user_signed_in? %>
-                <p class="mb-0 text-light font-weight-bold"><%= current_user.name %> 　ログイン中</p>
-              <% end %>
-            </div>
             <div>
               <div class="navbar-nav">
-
-                  <li><%= link_to "About", about_path, class: 'btn navbar-btn btn-outline-light' %></li>
-
-                  <li><%= link_to "新規登録",new_user_registration_path , class: 'btn navbar-btn btn-outline-light ml-3' %></li>
-                  <li><%= link_to "ログイン", new_user_session_path , class: 'btn navbar-btn btn-outline-light ml-3' %></li>
-                  <li><%= link_to destroy_user_session_path, method: :delete, class: 'btn navbar-btn btn-outline-light ml-3' do %>
-                    ログアウト
-                    <% end %>
+                <% if user_signed_in? %>
+                  <li class="navbar-item">
+                    <%= link_to "マイページ", users_path, class: 'btn navbar-btn btn-outline-light' %>
+                    <ul class="drop-menu">
+                      <li class="drop-menu_item"><%= link_to "新着通知", notifications_path, class: "drop-menu_link" %></li>
+                      <li class="drop-menu_item"><%= link_to "投稿一覧", users_products_index_path, class: "drop-menu_link" %></li>
+                      <li class="drop-menu_item"><%= link_to "引取一覧", index_path, class: "drop-menu_link" %></li>
+                      <li class="drop-menu_item"><%= link_to "保存済み", users_path, class: "drop-menu_link" %></li>
+                    </ul>
                   </li>
-
+                  <li class="navbar-item"><div class='btn navbar-btn btn-outline-light'>メニュー</div></li>
+                  <li class="navbar-item"><%= link_to destroy_user_session_path, method: :delete, class: 'btn navbar-btn btn-outline-light' do %>ログアウト<% end %></li>
+                <% else %>
+                  <li><%= link_to "はじめての方へ", about_path, class: 'btn navbar-btn btn-outline-light' %></li>
+                  <li><%= link_to "お問い合わせ","" , class: 'btn navbar-btn btn-outline-light' %></li>
+                  <li><%= link_to "ログイン", new_user_session_path , class: 'btn navbar-btn btn-outline-light' %></li>
+                  
+                <% end %>
+                <div class="d-flex align-items-center">
+                  <% if user_signed_in? %>
+                      <p class="mb-0 text-dark font-weight-bold"><%= current_user.name %> さん</p>
+                  <% end %>
+                </div>
               </div>
 
             </div>
