@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_10_141637) do
+ActiveRecord::Schema.define(version: 2023_07_12_134455) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2023_07_10_141637) do
     t.integer "taker_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_url"
   end
 
   create_table "read_counts", force: :cascade do |t|

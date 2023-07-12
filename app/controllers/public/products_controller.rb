@@ -61,12 +61,14 @@ class Public::ProductsController < ApplicationController
   end
 
   def update
-    image_url, item_url = params[:product][:selected_item].split(" ")
-    @product = Product.find(params[:id])
-    @product.detail_page = item_url
+    if params[:product][:selected_item].present?
+      image_url, item_url = params[:product][:selected_item].split(" ")
+      @product = Product.find(params[:id])
+      @product.detail_page = item_url
+      @product.image_url = image_url
+    end
     if @product.update(product_params)
       redirect_to product_path(@product)
-      flash[:notice] = "編集を行いました。"
     else
       render 'edit'
     end
