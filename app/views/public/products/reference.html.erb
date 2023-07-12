@@ -1,0 +1,43 @@
+<div class="row">
+
+
+
+  <div class="mx-auto">
+    <hr>
+    <hr>
+    <p>
+      続けて、参考となる商品を楽天市場より登録してください。
+      スペックが異なる場合は、編集画面より備考への記載をお願いします。
+    </p>
+    <hr>
+    <hr>
+    <%= form_with url: reference_product_path, method: :get, local:true do |f| %>
+    <div class="form-group">
+      <%= f.text_field :keyword, value: params[:keyword] %>
+      <%= f.submit '製品を検索', class: "btn btn-success" %>
+    </div>
+    <% end %>
+
+    <% if @items.present? %>
+    <%= form_with model: @product, local:true do |f| %>
+    <table class="table">
+        <% @items.first(5).each do |item| %>
+          <tr class="form-group">
+            <% value = "#{item['mediumImageUrls'][0]} #{item.url}" %>
+            <td><%= f.radio_button :selected_item, value %></td>
+            <td><%= image_tag (item['mediumImageUrls'][0]), size: "100x100" %></td>
+            <td><%= link_to item.name, "#{item.url}", target: :_blank, rel: "noopener noreferrer" %></td>
+          </tr>
+        <% end %>
+
+    </table>
+    <div class="text-right">
+    <%= f.submit "保存" %>
+    <%= link_to '保存せず終了', product_path(@product) %>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+
+</div>
+

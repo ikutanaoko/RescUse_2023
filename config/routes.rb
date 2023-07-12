@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       member do
         get 'confirm'
         patch 'take_over'
+        get 'reference'
       end
     end
     

@@ -3,12 +3,12 @@ class Public::ProductsController < ApplicationController
 
   def new_index
     @products = Product.where(is_used:"false")
-    
+
   end
 
   def used_index
     @products = Product.where(is_used:"true")
-    
+
 
   end
 
@@ -18,9 +18,9 @@ class Public::ProductsController < ApplicationController
     @comments = @product.comment.order(created_at: :desc)
     @comment = Comment.new
     @comment_reply = @product.comment.new
-    
+
     #1日に1人のユーザーの閲覧を最大1とする場合に使用
-    # unless ReadCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, product_id: @product.id)    
+    # unless ReadCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, product_id: @product.id)
     current_user.read_counts.create(product_id: @product.id)
     # end
   end
@@ -28,19 +28,29 @@ class Public::ProductsController < ApplicationController
   def new
     @product = Product.new
     @tags = Tag.all
+
+
+  end
+
+  def reference
+    @product = Product.find(params[:id])
+    if params[:keyword]
+      @items = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
+    end
   end
 
   def create
     @product = Product.new(product_params)
     @product.giver_id = current_user.id
     if @product.save!
-      flash[:notice] = "新規の投稿を行いました。"
+      flash[:notice] = "新規の投稿が完了しました。"
       if @product.is_used == false
         current_user.scores.create(active_score: 1)
       end
-      redirect_to product_path(@product)
+      redirect_to reference_product_path(@product)
     else
-
+      @product_new = Product.new
+      render 'new'
     end
 
   end
@@ -51,19 +61,23 @@ class Public::ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
+    if params[:product][:selected_item].present?
+      image_url, item_url = params[:product][:selected_item].split(" ")
+      @product = Product.find(params[:id])
+      @product.detail_page = item_url
+      @product.image_url = image_url
+    end
     if @product.update(product_params)
       redirect_to product_path(@product)
-      flash[:notice] = "編集を行いました。"
-    else 
+    else
       render 'edit'
     end
   end
-  
+
   def confirm
     @product = Product.find(params[:id])
   end
-  
+
   def take_over
     product = Product.find(params[:id])
     user = current_user

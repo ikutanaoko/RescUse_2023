@@ -27,8 +27,14 @@
           <tr>
             <td><%= @product.tags.pluck(:name).join(' / ') %></td>
           </tr>
+
+          <tr>
+            <td><%= image_tag @product.image_url, size: "100x100" %></td>
+            <td><%= link_to "楽天市場で類似商品の詳細を確認する", @product.detail_page, target: :_blank, rel: "noopener noreferrer" %></td>
+          </tr>
         </tbody>
       </table>
+
       <h3 id="favorite_buttons">
         <%= render "public/favorites/favorite-btn", product: @product %>
       </h3>
@@ -36,7 +42,7 @@
         <%= link_to "編集する", edit_product_path %>
       <% end %>
       <% if @product.is_closed == false %>
-        <%= link_to "引き取る", confirm_product_path, class: "btn btn-success" %>
+        <%= link_to "引取報告", confirm_product_path, class: "btn btn-success" %>
       <% end %>
     </div>
     <div class="col-md-5 offset-md-1 col-12">

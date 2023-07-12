@@ -3,6 +3,7 @@ class Admin::HomesController < ApplicationController
     @users = User.all
   end
 
-  def result
+  def search
+    
   end
 end
