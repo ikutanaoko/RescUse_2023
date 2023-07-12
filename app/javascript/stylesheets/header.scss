@@ -11,7 +11,7 @@
 .navbar-btn {
   color: #008b8b;
   display: block;
-
+  width: 115px;
 }
 
 // .navbar-nav li:hover {
@@ -36,21 +36,21 @@ li {
   position: absolute;
   padding-left: 0px;
   top: 50px;
-  transition: all .3s;
+  transition: all .5s;
+  width: 115px;
 }
 
-.drop-menu_link {
-  display: block;
-  /* display: none; デフォルトの設定は消す */ 
+.drop-menu-link {
+  display: none; 
   background-color: #ebebeb;
   transition: all .3s;
   padding: 5px 20px;
 }
 
-.drop-menu_link:hover {
+.drop-menu-link:hover {
   background-color: lightcyan;
 }
 
-.drop-menu_link.is-active {
+.drop-menu-link.is-active {
   display: block;
 }

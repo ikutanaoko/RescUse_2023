@@ -10,23 +10,30 @@
         <ul class="ml-auto mb-0">
           <div class="navbar-nav ml-auto">
             <div>
-              <div class="navbar-nav">
+              <ul class="navbar-nav">
                 <% if user_signed_in? %>
                   <li class="navbar-item">
-                    <%= link_to "マイページ", users_path, class: 'btn navbar-btn btn-outline-light' %>
+                    <%= link_to "マイページ", users_path, class: 'btn navbar-btn' %>
                     <ul class="drop-menu">
-                      <li class="drop-menu_item"><%= link_to "新着通知", notifications_path, class: "drop-menu_link" %></li>
-                      <li class="drop-menu_item"><%= link_to "投稿一覧", users_products_index_path, class: "drop-menu_link" %></li>
-                      <li class="drop-menu_item"><%= link_to "引取一覧", index_path, class: "drop-menu_link" %></li>
-                      <li class="drop-menu_item"><%= link_to "保存済み", users_path, class: "drop-menu_link" %></li>
+                      <li class="drop-menu_item"><%= link_to "新着通知", notifications_path, class: "drop-menu-link" %></li>
+                      <li class="drop-menu_item"><%= link_to "投稿一覧", users_products_index_path, class: "drop-menu-link" %></li>
+                      <li class="drop-menu_item"><%= link_to "引取一覧", index_path, class: "drop-menu-link" %></li>
+                      <li class="drop-menu_item"><%= link_to "保存済み", users_path, class: "drop-menu-link" %></li>
                     </ul>
                   </li>
-                  <li class="navbar-item"><div class='btn navbar-btn btn-outline-light'>メニュー</div></li>
-                  <li class="navbar-item"><%= link_to destroy_user_session_path, method: :delete, class: 'btn navbar-btn btn-outline-light' do %>ログアウト<% end %></li>
+                  <li class="navbar-item"><div class='btn navbar-btn'>メニュー</div>
+                    <ul class="drop-menu">
+                      <li class="drop-menu_item"><%= link_to "新規出品", new_product_path, class: "drop-menu-link" %></li>
+                      <li class="drop-menu_item"><%= link_to "未開封一覧", new_products_path, class: "drop-menu-link" %></li>
+                      <li class="drop-menu_item"><%= link_to "開封済一覧", used_products_path, class: "drop-menu-link" %></li>
+                      <li class="drop-menu_item"><%= link_to "問い合わせ", "", class: "drop-menu-link" %></li>
+                    </ul>
+                  </li>
+                  <li class="navbar-item"><%= link_to destroy_user_session_path, method: :delete, class: 'btn navbar-btn' do %>ログアウト<% end %></li>
                 <% else %>
-                  <li><%= link_to "はじめての方へ", about_path, class: 'btn navbar-btn btn-outline-light' %></li>
-                  <li><%= link_to "お問い合わせ","" , class: 'btn navbar-btn btn-outline-light' %></li>
-                  <li><%= link_to "ログイン", new_user_session_path , class: 'btn navbar-btn btn-outline-light' %></li>
+                  <li><%= link_to "はじめての方へ", about_path, class: 'btn navbar-btn' %></li>
+                  <li><%= link_to "問い合わせ","" , class: 'btn navbar-btn' %></li>
+                  <li><%= link_to "ログイン", new_user_session_path , class: 'btn navbar-btn' %></li>
                   
                 <% end %>
                 <div class="d-flex align-items-center">
@@ -34,7 +41,7 @@
                       <p class="mb-0 text-dark font-weight-bold"><%= current_user.name %> さん</p>
                   <% end %>
                 </div>
-              </div>
+              </ul>
 
             </div>
           </div>
@@ -43,3 +50,32 @@
     </div>
   </nav>
 </header>
+
+<script>
+  'use strict';
+ {
+  const parentMenuItem = document.querySelectorAll('.navbar-item');
+  console.log(parentMenuItem);
+  for (let i = 0; i < parentMenuItem.length; i++) {
+    parentMenuItem[i].addEventListener('mouseover', dropDownMenuOpen);
+    parentMenuItem[i].addEventListener('mouseleave', dropDownMenuClose);
+  }
+  function dropDownMenuOpen(e) {
+    const childMenuLink = e.currentTarget.querySelectorAll('.drop-menu-link');
+    console.log(childMenuLink);
+    for (let i = 0; i < childMenuLink.length; i++) {
+      childMenuLink[i].classList.add('is-active');
+    }
+  }
+  function dropDownMenuClose(e) {
+    const childMenuLink = e.currentTarget.querySelectorAll('.drop-menu-link');
+    console.log(childMenuLink);
+    for (let i = 0; i < childMenuLink.length; i++) {
+      childMenuLink[i].classList.remove('is-active');
+    }
+  }
+}
+
+
+
+</script>
