@@ -36,7 +36,7 @@
         <%= link_to "編集する", edit_product_path %>
       <% end %>
       <% if @product.is_closed == false %>
-        <%= link_to "引き取る", confirm_product_path, class: "btn btn-success" %>
+        <%= link_to "引取報告", confirm_product_path, class: "btn btn-success" %>
       <% end %>
     </div>
     <div class="col-md-5 offset-md-1 col-12">
