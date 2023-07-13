@@ -1,47 +1,39 @@
-<h1>My page</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-5">
-      <h3 class="mypage_content">新着通知</h3>
-      <h3 class="mypage_content">ランキング</h3>
-      <div class="mypage_content">
-        <h3>投稿履歴</h3>
-          <% @user_products.last(2).each do |product| %>
-          <div class="card-body border rounded mb-3">
-          <%= link_to product.name, product_path(product) %>
-          <%= product.created_at.strftime('%Y/%m/%d') %>
-          </div>
-        <% end %>
-      </div>
-      <div class="mypage_content">
-        <h3>引取履歴</h3>
-        <% @take_products.first(2).each do |product| %>
-          <div class="card-body border rounded mb-3">
-          <%= link_to product.name, product_path(product) %>
-          <%= product.updated_at.strftime('%Y/%m/%d') %>
-          </div>
-        <% end %>
-      </div>
-
+<div class="row">
+  <div class="col-5">
+    <div class="mypage_content">
+      <h5 class="font-weight-bold">新着通知</h5>
     </div>
-    <div class="col-7">
+    <div class="mypage_content">
+      <h5 class="font-weight-bold">ランキング</h5>
+    </div>
+    <div class="row mx-2 text-center">
+    <div class="col-3 mypage_content">
+      <h5 class="font-weight-bold"><%= link_to "投稿履歴", users_products_index_path %></h5>
+    </div>
+    <div class="col-3 mypage_content">
+      <h5 class="font-weight-bold"><%= link_to "引取履歴", index_path %></h5>
+    </div>
+    <div  class="col-4 mypage_content">
+    <h5 class="font-weight-bold"><%=link_to favorites_path do %>保存済み<span class="text-warning text-opacity-50">★</span><% end %></h5>
+    </div>
+    </div>
+  </div>
+  <div class="col-7">
+    
       <div class="mypage_content">
-        <h3>新着の未開封備品</h3>
-        <%= render 'product', products:@new_products %>
-        <div class="text-right">
-          <%= link_to "もっと見る...", new_products_path %>
-        </div>
+      <h5 class="font-weight-bold">新着の未開封備品</h5>
+      <%= render 'product', products:@new_products %>
+      <div class="text-right">
+        <%= link_to "もっと見る...", new_products_path %>
       </div>
-      </span>
-      <div class="mypage_content">
-        <h3>新着の開封済備品</h3>
-        <%= render 'product', products:@used_products %>
-        <div class="text-right">
-          <%= link_to "もっと見る...", used_products_path %>
-        </div>
+    </div>
+    </span>
+    <div class="mypage_content">
+      <h5 class="font-weight-bold">新着の開封済備品</h5>
+      <%= render 'product', products:@used_products %>
+      <div class="text-right">
+        <%= link_to "もっと見る...", used_products_path %>
       </div>
     </div>
   </div>
-  
-  
 </div>

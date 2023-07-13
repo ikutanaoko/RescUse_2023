@@ -1,8 +1,41 @@
-
-.mypage_content {
-  border: 1px solid #9932cc;
-  border-radius: 15px;
-  padding: 2px;
-  margin: 3px;
+a {
+ color: #008b8b; 
 }
 
+.mypage_content {
+  border: 3px solid #3cb371;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 8px;
+  background-color: #fffacd;
+}
+
+
+
+.new-product {
+  border-radius: 15px;
+  padding: 4px;
+  background-color: #ffd700;
+  color :#fff;
+}
+
+.used-product {
+  border-radius: 15px;
+  padding: 4px;
+  background-color: #afeeee;
+  color :#fff;
+}
+
+.open-product {
+  border-radius: 15px;
+  padding: 4px;
+  background-color: #4169e1;
+  color :#fff;
+}
+
+.closed-product {
+  border-radius: 15px;
+  padding: 4px;
+  background-color: #3cd371;
+  color :#fff;
+}

@@ -4,8 +4,7 @@ class Public::UsersController < ApplicationController
   def show
     @new_products = Product.where(is_used:"false")
     @used_products = Product.where(is_used:"true")
-    @user_products = Product.where(giver_id: current_user.id)
-    @take_products = Product.where(taker_id: current_user.id)
+
     
   end
 
@@ -16,6 +15,7 @@ class Public::UsersController < ApplicationController
   end
   
   def products_index
+    @products = Product.where(giver_id: current_user.id).order(created_at: :desc).page(params[:page])
   end
   
 end
