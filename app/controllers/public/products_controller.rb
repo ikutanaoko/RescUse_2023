@@ -42,7 +42,7 @@ class Public::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.giver_id = current_user.id
-    if @product.save!
+    if @product.save
       flash[:notice] = "新規の投稿が完了しました。"
       if @product.is_used == false
         current_user.scores.create(active_score: 1)

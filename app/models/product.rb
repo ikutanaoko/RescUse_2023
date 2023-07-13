@@ -16,6 +16,14 @@ class Product < ApplicationRecord
     end
   end
   
+  def is_closed?
+    if is_closed == true
+      "CLOSED"
+    else
+      "OPEN"
+    end
+  end
+  
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

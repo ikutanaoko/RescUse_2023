@@ -7,5 +7,6 @@ class Public::HomesController < ApplicationController
   end
 
   def index
+     @products = Product.where(taker_id: current_user.id).order(created_at: :desc).page(params[:page])
   end
 end

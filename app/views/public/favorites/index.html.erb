@@ -1,0 +1,43 @@
+<div class="row">
+<h5 class="font-weight-bold">保存済み一覧</h5>
+
+<% if @favorite_list.present? %>
+  <table class="table table-borderless table-sm">
+    <thead>
+      <tr class="text-center">
+        <th>投稿日</th>
+        <th>元の持ち主</th>
+        <th>製品名・型式</th>
+        <th>状態</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @favorite_list.each do |product| %> 
+      <tr class="text-center">
+        <td><%= product.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= product.giver.name %>(<%= product.giver.department.name %>)</td>
+    　　<td><%=link_to product.name, product_path(product), class:"d-inline-block text-truncate", style:"width: 200px;" %></td>
+        <td>
+          <% if product.status == "未開封備品" %>
+            <b class="new-product"><%= product.status %></b>
+          <% else %>
+            <b class="used-product"><%= product.status %></b>
+          <% end %>
+        </td>
+        <td class="d-inline-block text-truncate", style="width: 400px;"><%= product.information %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+<div class="text-center mx-auto">
+  <hr>
+
+
+<% else %>
+  保存している投稿はありません。
+<% end %>
+
+</div>
+</div>
