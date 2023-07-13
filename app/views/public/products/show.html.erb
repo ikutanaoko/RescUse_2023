@@ -27,11 +27,12 @@
           <tr>
             <td><%= @product.tags.pluck(:name).join(' / ') %></td>
           </tr>
-
+          <% if @product.image_url.present? %>
           <tr>
             <td><%= image_tag @product.image_url, size: "100x100" %></td>
             <td><%= link_to "楽天市場で類似商品の詳細を確認する", @product.detail_page, target: :_blank, rel: "noopener noreferrer" %></td>
           </tr>
+          <% end %>
         </tbody>
       </table>
 

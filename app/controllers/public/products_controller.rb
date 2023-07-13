@@ -61,9 +61,9 @@ class Public::ProductsController < ApplicationController
   end
 
   def update
+    @product = Product.find(params[:id])
     if params[:product][:selected_item].present?
       image_url, item_url = params[:product][:selected_item].split(" ")
-      @product = Product.find(params[:id])
       @product.detail_page = item_url
       @product.image_url = image_url
     end
