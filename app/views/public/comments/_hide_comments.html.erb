@@ -1,43 +1,41 @@
-<div class="container">
+<div class="container comment-box">
   <div class="row d-flex align-items-center pb-3" >
     <div class="col">
-      <%= comment.user.name %>さん　
+      <%= comment.user.name %>(<%= comment.user.department.name %>)　
     </div>
     <div class="col d-flex justify-content-end">
-      <%= comment.created_at.strftime('%Y/%m/%d') %>
+      <%= comment.created_at.strftime('%Y/%-m/%-d %H:%M') %>
     </div>  
-  </div>    
-  <div class="card-body border rounded mb-3">
+  </div> 
+  <div class="ml-3">
     <%= comment.body %>
+    <% if comment.user == current_user %>
+      <div class="text-right">
+        <%= link_to"削除", product_comment_path(comment.product, comment), method: :delete, remote:true  %>
+      </div>
   </div>
-
-  <% if comment.user == current_user %>
-    <div class="text-right">
-      <%= link_to"削除", product_comment_path(comment.product, comment), method: :delete, remote:true  %>
-    </div>
-  <% end %>
+      <hr>
+    <% end %>
   <% comment.replies.each do |reply| %>
     <div class="container">
       <div class="row d-flex align-items-center">
         <div class="col">
-          <%= reply.user.name %>さん　
+          <%= reply.user.name %>(<%= reply.user.department.name %>)　
         </div>
         <div class="col d-flex justify-content-end">
-          <%= reply.created_at.strftime('%Y/%m/%d') %>
+          <%= reply.created_at.strftime('%Y/%-m/%-d %H:%M') %>
         </div>  
       </div>    
-      <div class="card-body border rounded mb-3">
+      <div class="ml-3">
         <%= reply.body %>
-　　　</div>
-
       <% if reply.user == current_user %>
         <div class="text-right">
           <%= link_to"削除", product_comment_path(comment.product, reply), method: :delete, remote:true  %>
         </div>
       <% end %>
+      </div>
     </div>
   <% end %>
   <%= render 'public/comments/reply_form', comment: comment, comment_reply: comment_reply, product: product %>　
-　
   <hr>
 </div>

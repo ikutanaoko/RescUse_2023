@@ -1,2 +1,11 @@
-<h3>開封済引取募集備品一覧</h3>
-<%= render "index", products: @products %>
+<div class="row">
+  <h5 class="font-weight-bold">開封済引取募集備品一覧</h5>
+  
+  <%= render "index", products: @products %>
+
+  <div class="text-center mx-auto">
+  <hr>
+    <%= paginate @products %>
+  </div>
+
+</diV>

@@ -2,12 +2,12 @@ class Public::ProductsController < ApplicationController
   before_action :authenticate_user!
 
   def new_index
-    @products = Product.where(is_used:"false", is_closed:"false").order(created_at: :desc).page(params[:page])
+    @products = Product.where(is_used:"false", is_closed:"false").page(params[:page])
 
   end
 
   def used_index
-    @products = Product.where(is_used:"true", is_closed:"false").order(created_at: :desc).page(params[:page])
+    @products = Product.where(is_used:"true", is_closed:"false").page(params[:page])
 
 
   end
@@ -82,7 +82,7 @@ class Public::ProductsController < ApplicationController
     product = Product.find(params[:id])
     user = current_user
     product.update(taker_id: user.id, is_closed: true)
-    flash[:notice] = "担当者に引き取りの通知を行いました。受け渡しのご調整をお願いいたします。"
+    flash[:notice] = "引き取り完了報告を承りました。"
     current_user.scores.create(passive_score: 1)
     redirect_to users_path
   end

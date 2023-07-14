@@ -1,58 +1,89 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-12">
-      <table class="table table-borderless">
+    <div class="col-md-6 col-12 pl-0">
+      <div class="row">
+        <div class="col-4">
+        <h3 class="font-weight-bold mx-3">備品詳細</h3>
+        </div>
+        <div class="col-4">
+        <h3>
+        <% if @product.status == "未開封" %>
+          <b class="new-product"><%= @product.status %></b>
+        <% else %>
+          <b class="used-product"><%= @product.status %></b>
+        <% end %>
+        </h3>
+        </div>
+        <diV class="col-4">
+          <h3 id="favorite_buttons">
+          <%= render "public/favorites/favorite-btn", product: @product %>
+          </h3>
+        </diV>
+      </div>
+      <diV class=" product-detail mt-2 py-2">
+      <table class="table table-borderless table-sm mb-0">
         <thead>
-          <tr>
-            <th></th>
-            <th></th>
-          </tr>
+
         </thead>
         <tbody>
           <tr>
-            <th>型式・品名</th><td><%= @product.name %></td>
+            <th class="align-middle">型式・品名</th><td style="width: 300px;"><%= @product.name %></td>
           </tr>
           <tr>
-            <th>詳細</th><td><%= @product.information %><td>
-          </tr>
-          <tr>
-            <th>税抜き価格</th><td><%= @product.price.to_s(:delimited) %><td>
+            <th>税抜き価格</th><td><%= @product.price.to_s(:delimited) %>円<td>
           </tr>
           <tr>
             <th>個数</th><td><%= @product.count %><td>
           </tr>
           <tr>
-            <td><%= @product.status %></td>
+            <th>備考</th>
           </tr>
-          <tr>
-            <td><%= @product.tags.pluck(:name).join(' / ') %></td>
-          </tr>
-          <% if @product.image_url.present? %>
-          <tr>
-            <td><%= image_tag @product.image_url, size: "100x100" %></td>
-            <td><%= link_to "楽天市場で類似商品の詳細を確認する", @product.detail_page, target: :_blank, rel: "noopener noreferrer" %></td>
-          </tr>
-          <% end %>
         </tbody>
       </table>
+      <div class="pl-3"><%= @product.information %></div>
+      <div class="pl-3">#<%= @product.tags.pluck(:name).join(' / ') %></div>
 
-      <h3 id="favorite_buttons">
-        <%= render "public/favorites/favorite-btn", product: @product %>
-      </h3>
-      <% if @product.giver_id == current_user.id %>
-        <%= link_to "編集する", edit_product_path %>
-      <% end %>
-      <% if @product.is_closed == false %>
-        <%= link_to "引取報告", confirm_product_path, class: "btn btn-success" %>
-      <% end %>
+      <table class="mt-2">
+        <% if @product.image_url.present? %>
+          <tr >
+            <td class="pl-3"><%= image_tag @product.image_url, size: "100x100" %></td>
+            <td class="pl-3"><%= link_to "楽天市場で類似商品の詳細を確認する", @product.detail_page, target: :_blank, rel: "noopener noreferrer" %></td>
+          </tr>
+        <% end %>
+
+        <!--投稿者の画面に表示-->
+        <% if @product.giver_id == current_user.id %>
+          <tr>
+            <td class="pl-3"><%= link_to edit_product_path do %><div class="btn btn-secondary align-center px-4 py-2">編集する</div><% end %></td>
+            
+            <%= form_with model: @product, local:true do |f| %>
+              <% if @product.is_closed == false %>
+                <%= f.hidden_field :is_closed, :value => true %>
+                <td class="pl-3"><%= f.submit "非公開にする", class: 'btn btn-success align-center px-4 py-2' %></td>
+              <% elsif @product.taker_id.present? %>
+                <td class="pl-3 font-weight-bold"><%= @product.taker.name %>(<%= @product.taker.department.name %>)さんが引き取り済み</td> 
+              <% else %>
+                <%= f.hidden_field :is_closed, :value => false %>
+                <td class="pl-3"><%= f.submit "公開にする", class: 'btn btn-primary align-center px-4 py-2' %></td>
+              <% end %>
+            <% end %>
+          </tr>
+        <!--ここまで-->
+        
+        <% elsif @product.is_closed == false %>
+          <tr>
+            <%= link_to "引取完了報告", confirm_product_path, class: "btn btn-info" %>  
+          </tr>
+        <% end %>
+      </table>
+      
+      </diV>
     </div>
-    <div class="col-md-5 offset-md-1 col-12">
-      <div id="comments_area" >
+    <div class="col-md-5 offset-md-1 col-12 mt-5">
+      <h5>出品者　：<%= @product.giver.name %>(<%= @product.giver.department.name %>)</h5>
+      <div id="comments_area">
         <%= render 'public/comments/index', comments: @comments, comment_reply: @comment_reply, product: @product %>
       </div>
-      <% if user_signed_in? %>
-        <%= render 'public/comments/form', product: @product, comment: @comment %>
-      <% end %>
     </div>
   </div>
 </div>

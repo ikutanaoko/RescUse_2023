@@ -12,6 +12,10 @@ class User < ApplicationRecord
   has_many :comment
   has_many :read_counts, dependent: :destroy
   
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visiter_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
+  
  # No use email
   def email_required?
     false

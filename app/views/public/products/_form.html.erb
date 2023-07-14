@@ -13,13 +13,7 @@
           <td><%= f.label :name, '製品名/型式' %></td>
           <td><%= f.text_field :name, class: "col-12" %></td>
         </tr>
-
-
-        <div class="form-group">
-          <td><%= f.label :information, '紹介文' %></td>
-          <td><%= f.text_area :information, placeholder: "ここに紹介文を記述します", class: "col-12" %></td>
-        </tr>
-
+        
         <tr class="form-group">
         <td><%= f.label :price, '税抜価格(円)' %></td>
         <td><%= f.text_field :price, placeholder: "1000", class: "col-12" %></td>
@@ -31,10 +25,17 @@
         </tr>
         
         <tr class="form-group">
+          <td><%= f.label :information, '備考' %></td>
+          <td><%= f.text_area :information, placeholder: "ここに備考を記入します", class: "col-12" %></td>
+        </tr>
+        
+        <tr class="form-group">
           <td>
             <%= f.label :tag_ids, 'タグ' %>
+          </td>
+          <td>
             <%= f.collection_check_boxes :tag_ids, @tags, :id, :name do |b| %>
-            <div><%= b.check_box %><%= b.label %></div>
+            <span><%= b.check_box %><%= b.label %></span>
             <% end %>
           </td>
         </tr>

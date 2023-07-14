@@ -10,7 +10,8 @@ class Public::CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comments = @product.comment.order(created_at: :desc)
     @comment_reply = @product.comment.new(comment_params)
-    if @comment.save!
+    if @comment.save
+      @product.create_notification_comment(current_user)
       flash.now[:notice] = "コメントの投稿に成功しました。"
       render :index
     else
