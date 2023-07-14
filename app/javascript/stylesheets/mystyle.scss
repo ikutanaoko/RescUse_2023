@@ -3,11 +3,11 @@ a {
 }
 
 .mypage_content {
-  border: 3px solid #3cb371;
+  border: 3px solid rgb(26,146,86);
   border-radius: 5px;
   padding: 2px;
   margin: 8px;
-  background-color: #fffacd;
+  background-color: #E9FDF3;
 }
 
 
@@ -22,7 +22,7 @@ a {
 .used-product {
   border-radius: 15px;
   padding: 4px;
-  background-color: #afeeee;
+  background-color: #00bfff;
   color :#fff;
 }
 
@@ -38,4 +38,14 @@ a {
   padding: 4px;
   background-color: #3cd371;
   color :#fff;
+}
+
+.product-index {
+  background-color: #E9FDF3;
+}
+
+.product-index th {
+  background-color: #167F92;
+  border: solid 2px #E9FDF3;
+  color: #fff;
 }
