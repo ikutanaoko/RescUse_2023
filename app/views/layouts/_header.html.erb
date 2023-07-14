@@ -14,7 +14,7 @@
                 <% if user_signed_in? %>
                   <li>
                     <%= link_to "マイページ", users_path, class: 'btn navbar-btn' %>
-                    <ul>
+                    <ul class="drop-menu">
                       <li><%= link_to "新着通知", notifications_path, class: "drop-menu-link" %></li>
                       <li><%= link_to "投稿一覧", users_products_index_path, class: "drop-menu-link" %></li>
                       <li><%= link_to "引取一覧", index_path, class: "drop-menu-link" %></li>
@@ -22,7 +22,7 @@
                     </ul>
                   </li>
                   <li><div class='btn navbar-btn'>メニュー</div>
-                    <ul>
+                    <ul class="drop-menu">
                       <li><%= link_to "新規出品", new_product_path, class: "drop-menu-link" %></li>
                       <li><%= link_to "未開封一覧", new_products_path, class: "drop-menu-link" %></li>
                       <li><%= link_to "開封済一覧", used_products_path, class: "drop-menu-link" %></li>

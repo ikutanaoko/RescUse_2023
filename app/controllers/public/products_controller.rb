@@ -2,12 +2,12 @@ class Public::ProductsController < ApplicationController
   before_action :authenticate_user!
 
   def new_index
-    @products = Product.where(is_used:"false")
+    @products = Product.where(is_used:"false", is_closed:"false").order(created_at: :desc).page(params[:page])
 
   end
 
   def used_index
-    @products = Product.where(is_used:"true")
+    @products = Product.where(is_used:"true", is_closed:"false").order(created_at: :desc).page(params[:page])
 
 
   end

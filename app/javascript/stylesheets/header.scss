@@ -75,18 +75,20 @@
     text-decoration: none;
 }
 
-#nav li ul {
+.drop-menu {
     display: none;
     margin-left: -40px;
     position: absolute;
-    opacity: 1;
-  
+    z-index: 1;
+    
 }
-#nav li ul li {
-    background-color: #d3d3d3;
+.drop-menu li {
+  background-color: #1D1D1D;
+  opacity: 0.8;
 
 }
 
 .drop-menu-link {
-  color: #008b8b;
+  color: #fff;
+  opacity: 1;
 }
