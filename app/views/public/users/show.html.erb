@@ -19,9 +19,9 @@
     </div>
   </div>
   <div class="col-7">
-    
+
       <div class="mypage_content">
-      <h5 class="font-weight-bold">新着の未開封備品</h5>
+      <h5 class="font-weight-bold">新着の未開封引取募集備品</h5>
       <%= render 'product', products:@new_products %>
       <div class="text-right">
         <%= link_to "もっと見る...", new_products_path %>
@@ -29,7 +29,7 @@
     </div>
     </span>
     <div class="mypage_content">
-      <h5 class="font-weight-bold">新着の開封済備品</h5>
+      <h5 class="font-weight-bold">新着の開封済引取募集備品</h5>
       <%= render 'product', products:@used_products %>
       <div class="text-right">
         <%= link_to "もっと見る...", used_products_path %>

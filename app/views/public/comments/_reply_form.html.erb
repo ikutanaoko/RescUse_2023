@@ -1,7 +1,7 @@
 <%= form_with model: [product, comment_reply], local: false do |f| %>
   <div class="form-group">
-    <%= f.text_area :body, rows: '2', placeholder:"返信をここに", class:"form-control" %>
+    <%= f.text_area :body, rows: '1', class:"form-control" %>
     <%= f.hidden_field :parent_id,value: comment.id %>
-    <%= f.submit "返信する", class:"mt-1" %>
+    <div class="text-right"><%= f.submit "返信する", class:"mt-1" %></div>
   </div>
 <% end %>

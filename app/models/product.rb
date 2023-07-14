@@ -10,9 +10,9 @@ class Product < ApplicationRecord
   
   def status
     if is_used == true
-      "開封済備品"
+      "開封済"
     else
-      "未開封備品"
+      "未開封"
     end
   end
   

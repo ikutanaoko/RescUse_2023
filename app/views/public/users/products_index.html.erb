@@ -14,7 +14,7 @@
   <tbody>
     <% @products.each do |product| %> 
     <tr class="text-center">
-      <td><%= product.created_at.strftime('%Y/%m/%d') %></td>
+      <td><%= product.created_at.strftime('%Y/%-m/%-d') %></td>
   　　<td class="d-inline-block text-truncate", style="width: 400px;" ><%= link_to product.name, product_path(product) %></td>
       <td>
         <% if product.is_closed? == "OPEN" %>

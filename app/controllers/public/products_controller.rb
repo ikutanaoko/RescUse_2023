@@ -82,7 +82,7 @@ class Public::ProductsController < ApplicationController
     product = Product.find(params[:id])
     user = current_user
     product.update(taker_id: user.id, is_closed: true)
-    flash[:notice] = "担当者に引き取りの通知を行いました。受け渡しのご調整をお願いいたします。"
+    flash[:notice] = "引き取り完了報告を承りました。"
     current_user.scores.create(passive_score: 1)
     redirect_to users_path
   end

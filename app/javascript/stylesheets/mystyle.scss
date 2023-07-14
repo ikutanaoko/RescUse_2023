@@ -11,7 +11,6 @@ a {
 }
 
 
-
 .new-product {
   border-radius: 15px;
   padding: 4px;
@@ -48,4 +47,20 @@ a {
   background-color: #167F92;
   border: solid 2px #E9FDF3;
   color: #fff;
+}
+
+.product-detail {
+  background-color: #E9FDF3;
+}
+
+.product-detail th {
+  background-color: #167F92;
+  border: solid 10px #E9FDF3;
+  color: #fff;
+
+}
+
+.comment-box {
+  background-color: #E9FDF3;
+
 }
