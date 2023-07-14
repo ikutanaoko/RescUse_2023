@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+default_scope -> { order(created_at: :desc) }
   
   belongs_to :giver, class_name: 'User', foreign_key: :giver_id
   belongs_to :taker, class_name: 'User', foreign_key: :taker_id, optional: true
@@ -7,7 +8,8 @@ class Product < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comment
   has_many :read_counts, dependent: :destroy
-  
+  has_many :notifications, dependent: :destroy
+
   def status
     if is_used == true
       "開封済"
@@ -15,7 +17,7 @@ class Product < ApplicationRecord
       "未開封"
     end
   end
-  
+
   def is_closed?
     if is_closed == true
       "CLOSED"
@@ -23,9 +25,26 @@ class Product < ApplicationRecord
       "OPEN"
     end
   end
-  
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
+  def create_notification_comment(current_user)
+    notification = current_user.active_notifications.new(
+      product_id: id,
+      visited_id: giver_id,
+      action: 'comment'
+      )
+
+    #本人からの通知のコメントを作成しない場合以下を記入
+    # if notification.visitor_id == notification.visited_id
+    #   notification.checked = true
+    # end
+    if notification.valid?
+    notification.save
+    end
+  end
+
+
 end
