@@ -2,10 +2,10 @@
   <div class="d-flex col-8 offset-2 item-index-bo">
     <h5 class="bg-light col-2 text-center">開封済引取募集備品一覧</h5>
     <div class="ml-auto d-flex flex-row-reverse" >
-      <%= link_to "タグから探す", tag_path(params[:id])  %>
+      <%= link_to "タグから探す", tags_path %>
     </div>
   </div>
-  
+
   <%= render "index", products: @products %>
 
   <div class="text-center mx-auto">

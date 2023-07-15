@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     
     get '/new_products' => 'products#new_index'
     get '/used_products' => 'products#used_index'
-    resources :tags, only: [:show]
+    resource :tags, only: [:show]
     get 'users' => 'users#show'
     get 'users/information/edit' => 'users#edit'
     patch 'users/information' => 'users#update'

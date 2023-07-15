@@ -6,7 +6,8 @@ default_scope -> { order(created_at: :desc) }
   has_many :product_tags, dependent: :destroy
   has_many :tags, through: :product_tags
   has_many :favorites, dependent: :destroy
-  has_many :comment
+  has_many :comments
+  has_many :replies, class_name: "Comment", foreign_key: :parent_id, dependent: :destroy
   has_many :read_counts, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
@@ -35,6 +36,23 @@ default_scope -> { order(created_at: :desc) }
       product_id: id,
       visited_id: giver_id,
       action: 'comment'
+      )
+
+    #本人からの通知のコメントを作成しない場合以下を記入
+    # if notification.visitor_id == notification.visited_id
+    #   notification.checked = true
+    # end
+    if notification.valid?
+    notification.save
+    end
+  end
+  
+  
+  def create_notification_reply(current_user,comment)
+    notification = current_user.active_notifications.new(
+      parent_id: comment.parent_id,
+      visited_id: 
+      action: 'reply'
       )
 
     #本人からの通知のコメントを作成しない場合以下を記入

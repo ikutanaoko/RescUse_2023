@@ -44,7 +44,7 @@
 
       <div>
         <% @tags.each do |tag| %>
-          <i class="fas fa-tag pl-3"></i><%= link_to tag.name, tag_path(tag) %>(<%= tag.products.count %>)
+          <i class="fas fa-tag pl-3"></i><%= link_to tag.name, tags_path(tag) %>(<%= tag.products.count %>)
         <% end %>
       </div>
       <table class="my-2">
