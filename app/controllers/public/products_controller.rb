@@ -14,6 +14,7 @@ class Public::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @tags = @product.tags
     @user = @product.giver
     @comments = @product.comment.order(created_at: :desc)
     @comment = Comment.new

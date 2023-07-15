@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-
   # 社員用
   devise_for :users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -38,11 +37,14 @@ Rails.application.routes.draw do
     get 'users/information/edit' => 'users#edit'
     patch 'users/information' => 'users#update'
     get 'users/products_index' => 'users#products_index'
+    resources :inquiries, only: [:new, :create]
+    get 'inquiry/completion' => 'inquiries#completion'
     resources :notifications, only: [:index, :destroy] do
       collection do
         delete 'destroy_all'
       end
     end
+
   end
   
   # 管理者用

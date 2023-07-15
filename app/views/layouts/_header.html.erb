@@ -26,13 +26,13 @@
                       <li><%= link_to "新規出品", new_product_path, class: "drop-menu-link" %></li>
                       <li><%= link_to "未開封一覧", new_products_path, class: "drop-menu-link" %></li>
                       <li><%= link_to "開封済一覧", used_products_path, class: "drop-menu-link" %></li>
-                      <li><%= link_to "問い合わせ", "", class: "drop-menu-link" %></li>
+                      <li><%= link_to "問い合わせ", new_inquiry_path, class: "drop-menu-link" %></li>
                     </ul>
                   </li>
                   <li><%= link_to destroy_user_session_path, method: :delete, class: 'btn navbar-btn' do %>ログアウト<% end %></li>
                 <% else %>
                   <li><%= link_to "初めての方", about_path, class: 'btn navbar-btn' %></li>
-                  <li><%= link_to "問い合わせ","" , class: 'btn navbar-btn' %></li>
+                  <li><%= link_to "問い合わせ", new_inquiry_path, class: 'btn navbar-btn' %></li>
                   <li><%= link_to "ログイン", new_user_session_path , class: 'btn navbar-btn' %></li>
                   
                 <% end %>

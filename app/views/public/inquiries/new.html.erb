@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <h5 class="mx-auto font-weight-bold">お問い合わせフォーム</h5>
+  </div>  
+  <div class="row">
+      
+    <div class="col-6 mx-auto">
+    <%= render 'layouts/error_messages', obj: @inquiry %>
+    <%= form_with model: @inquiry, local:true do |f| %>
+      <table class="table table-borderless">
+        <thead>
+          <th style="width: 35%"></th>
+          <th style="width: 65%"></th>
+        </thead>
+        <tbody>
+  
+          <tr class="form-group">
+            <td><%= f.label :name, 'お名前' %></td>
+            <td><%= f.text_field :name, class: "col-12" %></td>
+          </tr>
+          
+          <tr class="form-group">
+          <td><%= f.label :contact, '連絡先(メールアドレスor内線番号)' %></td>
+          <td><%= f.text_field :contact, class: "col-12" %></td>
+          </tr>
+          
+          <tr class="form-group">
+          <td><%= f.label :body, 'お問い合わせ内容' %></td>
+          <td><%= f.text_area :body, class: "col-12" %></td>
+          </tr>
+          
+        </tbody>
+      </table>
+      <div class="text-center mb-5">
+          <%= f.submit "送信", class: 'btn btn-success align-center px-4 py-2' %>
+      </div>
+  
+    <% end %>
+  
+    </div>
+  </div>
+</div>
