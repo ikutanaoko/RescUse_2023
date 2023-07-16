@@ -1,7 +1,7 @@
 <div class="container comment-box">
   <div class="row d-flex align-items-center pb-3" >
     <div class="col">
-      <%= comment.user.name %>(<%= comment.user.department.name %>　
+      <%= comment.user.name %>(<%= comment.user.department.name %>)　
     </div>
     <div class="col d-flex justify-content-end">
       <%= comment.created_at.strftime('%Y/%-m/%-d %H:%M') %>
@@ -28,11 +28,11 @@
       </div>    
       <div class="ml-3">
         <%= reply.body %>
-      <% if reply.user == current_user %>
-        <div class="text-right">
-          <%= link_to"削除", product_comment_path(comment.product, reply), method: :delete, remote:true  %>
-        </div>
-      <% end %>
+        <% if reply.user == current_user %>
+          <div class="text-right">
+            <%= link_to"削除", product_comment_path(comment.product, reply), method: :delete, remote:true  %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>

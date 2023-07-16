@@ -51,7 +51,7 @@ default_scope -> { order(created_at: :desc) }
   def create_notification_reply(current_user,comment)
     notification = current_user.active_notifications.new(
       parent_id: comment.parent_id,
-      visited_id: 
+      visited_id: ,
       action: 'reply'
       )
 
