@@ -1,2 +1,16 @@
-<h1>Public::Tags#show</h1>
-<p>Find me in app/views/public/tags/show.html.erb</p>
+
+  <div><h5 class="font-weight-bold">タグから探す</h5></div>
+  <div>
+  <% @tags.each do |tag| %>
+    <i class="fas fa-tag pl-2"></i><%= link_to tag.name, tags_path(id: tag.id) %>(<%= tag.products.count %>)
+  <% end %>
+<div class="row">
+  </div>
+  <%= render "public/products/index", products: @products %>
+
+  <div class="text-center mx-auto">
+  <hr>
+    <%= paginate @products %>
+  </div>
+
+</diV>

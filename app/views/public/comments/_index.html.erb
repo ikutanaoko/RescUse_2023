@@ -1,5 +1,5 @@
 <h5>コメント　<%= comments.count %>件</h5>
-<hr>
+
 <%= render 'layouts/flash_message' %>
 <% if user_signed_in? %>
   <%= render 'public/comments/form', product: @product, comment: @comment %>

@@ -14,10 +14,11 @@ class Public::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @tags = @product.tags
     @user = @product.giver
-    @comments = @product.comment.order(created_at: :desc)
+    @comments = @product.comments.order(created_at: :desc)
     @comment = Comment.new
-    @comment_reply = @product.comment.new
+    @comment_reply = @product.comments.new
 
     #1日に1人のユーザーの閲覧を最大1とする場合に使用
     # unless ReadCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, product_id: @product.id)
@@ -45,7 +46,7 @@ class Public::ProductsController < ApplicationController
     if @product.save
       flash[:notice] = "新規の投稿が完了しました。"
       if @product.is_used == false
-        current_user.scores.create(active_score: 1)
+        current_user.scores.create(active_score: 1, department_id: current_user.department.id)
       end
       redirect_to reference_product_path(@product)
     else
@@ -83,7 +84,7 @@ class Public::ProductsController < ApplicationController
     user = current_user
     product.update(taker_id: user.id, is_closed: true)
     flash[:notice] = "引き取り完了報告を承りました。"
-    current_user.scores.create(passive_score: 1)
+    current_user.scores.create(passive_score: 1, department_id: user.department.id)
     redirect_to users_path
   end
 
