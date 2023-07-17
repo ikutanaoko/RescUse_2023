@@ -1,9 +1,9 @@
 <div class="container comment-box">
   <div class="row d-flex align-items-center pb-3" >
-    <div class="col">
+    <div class="col text-secondary">
       <%= comment.user.name %>(<%= comment.user.department.name %>)　
     </div>
-    <div class="col d-flex justify-content-end">
+    <div class="col d-flex justify-content-end text-secondary">
       <%= comment.created_at.strftime('%Y/%-m/%-d %H:%M') %>
     </div>  
   </div> 
@@ -13,16 +13,17 @@
       <div class="text-right">
         <%= link_to"削除", product_comment_path(comment.product, comment), method: :delete, remote:true  %>
       </div>
-  </div>
-      <hr>
     <% end %>
+  </div>
+  <hr>
+
   <% comment.replies.each do |reply| %>
     <div class="container">
       <div class="row d-flex align-items-center">
-        <div class="col">
+        <div class="col text-secondary">
           <%= reply.user.name %>(<%= reply.user.department.name %>)　
         </div>
-        <div class="col d-flex justify-content-end">
+        <div class="col d-flex justify-content-end text-secondary">
           <%= reply.created_at.strftime('%Y/%-m/%-d %H:%M') %>
         </div>  
       </div>    

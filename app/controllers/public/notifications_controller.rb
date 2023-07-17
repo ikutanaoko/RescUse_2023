@@ -9,8 +9,8 @@ def index
   end
   
   def destroy
+    @notifications = current_user.passive_notifications
     notification = Notification.find(params[:id]).destroy
-    redirect_to notifications_path
   end
   
   def destroy_all

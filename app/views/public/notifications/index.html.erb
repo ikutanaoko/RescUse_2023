@@ -3,7 +3,7 @@
       <h5 class="text-center"><i class="fas fa-bell"></i>新着通知</h5>
       <p class="text-right"><%= link_to destroy_all_notifications_path, method: :delete,class:"btn" do %>全削除<i class="fas fa-trash"></i><% end %></p>
       <% if @notifications.exists? %>
-        <%= render 'notification', notifications: @notifications %>
+        <div id="notification" ><%= render 'notification', notifications: @notifications %></div>
       <% else %>
       <p class="text-center">通知はありません</p>
       <% end %>
