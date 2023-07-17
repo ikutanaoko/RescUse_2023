@@ -1,4 +1,4 @@
-<ul class="mb-0">
+<ul class="mb-0" id="notification_box">
   <% notifications.first(3).each do |notification| %>
   <li>
     <strong><%= notification.visiter.name %></strong>さんから
@@ -8,7 +8,7 @@
     <% else %>
       <strong><%= link_to product_path(notification.comment.product) do %>返信<% end %></strong>がありました。
     <% end %>
-      <p class="text-right mb-0"><%= "(#{time_ago_in_words(notification.created_at)} ago)" %><%= link_to notification_path(notification.id), method: :delete,class:"btn" do %><i class="fa-solid fa-xmark" style="color: red;"></i><% end %></p>
+      <p class="text-right mb-0"><%= "(#{time_ago_in_words(notification.created_at)} ago)" %><%= link_to notification_path(notification.id), method: :delete, remote: true ,class:"btn" do %><i class="fa-solid fa-xmark" style="color: red;"></i><% end %></p>
   </li>
   <% end %>
 </ul>

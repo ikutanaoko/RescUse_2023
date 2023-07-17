@@ -14,9 +14,10 @@ class Public::CommentsController < ApplicationController
       if @comment.parent_id.blank?
         @product.create_notification_comment(current_user)
       else
-        @product.create_notification_reply(current_user, @comment)
+        @comment.create_notification_reply(current_user)
       end
         flash.now[:notice] = "コメントの投稿に成功しました。"
+      @comment_reply = @product.comments.new
       @comment = Comment.new
       render :index
     else
