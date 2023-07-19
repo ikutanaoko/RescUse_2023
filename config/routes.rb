@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         get 'confirm'
         patch 'take_over'
         get 'reference'
+        patch 'update_status'
       end
     end
     
@@ -51,16 +52,19 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => 'homes#top'
-    get '/result'  => 'homes#result'
     resources :departments, only: [:index,:show,:edit,:create,:update, :destroy]
     resources :products, only: [:index,:show,:edit,:update,:destroy] do
       collection do
         get 'search' => 'products#search'
       end
-      resources :comments, only: [:destroy, :show]
+      resources :comments, only: [:destroy]
     end
     resources :tags, only: [:index,:edit,:create,:update, :destroy]
-    resources :users, only: [:index,:show,:edit,:update]
+    resources :users, only: [:index,:show,:edit,:update] do
+        collection do
+      get 'search' => 'users#search'
+      end
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

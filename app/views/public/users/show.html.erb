@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-5">
-    <div class="mypage_content">
+    <div class="mypage-content">
       <h5 class="font-weight-bold">新着通知</h5>
-      <div id="mypage_notification"><%= render 'notification', notifications: @notifications %></div>
+      <div id="mypage-notification"><%= render 'notification', notifications: @notifications %></div>
     </div>
-    <div class="mypage_content">
-      <h5 class="font-weight-bold">部署別</h5>
+    <div class="mypage-content">
+      <h5 class="font-weight-bold"></h5>
       <div class="container" style="width:100%">
         <canvas id="canvas"></canvas>
       </div>
@@ -13,25 +13,25 @@
   </div>
   <div class="col-7">
     <div class="row mx-2 text-center">
-      <div class="col-4 mx-0 mypage_content">
+      <div class="col-4 mx-0 mypage-content">
         <h5 class="font-weight-bold"><%= link_to "投稿履歴", users_products_index_path %></h5>
       </div>
-      <div class="col-4 mx-0 mypage_content">
+      <div class="col-4 mx-0 mypage-content">
         <h5 class="font-weight-bold"><%= link_to "引取履歴", index_path %></h5>
       </div>
-      <div  class="col-4 mx-0 mypage_content">
+      <div  class="col-4 mx-0 mypage-content">
         <h5 class="font-weight-bold"><%=link_to favorites_path do %>保存済み<span class="text-warning text-opacity-50">★</span><% end %></h5>
       </div>
     </div>
 
-    <div class="mypage_content">
+    <div class="mypage-content">
       <h5 class="font-weight-bold">新着の未開封引取募集備品</h5>
       <%= render 'product', products:@new_products %>
       <div class="text-right">
         <%= link_to "もっと見る...", new_products_path %>
       </div>
     </div>
-    <div class="mypage_content">
+    <div class="mypage-content">
       <h5 class="font-weight-bold">新着の開封済引取募集備品</h5>
       <%= render 'product', products:@used_products %>
       <div class="text-right">
@@ -49,25 +49,25 @@
 window.onload = function() {
     ctx = document.getElementById("canvas").getContext("2d");
     window.myBar = new Chart(ctx, {
-        type: 'bar', // ここは bar にする必要があります
+        type: 'bar',
         data: barChartData,
         options: complexChartOption
     });
 };
 </script>
 <script>
-<%#= @departments.map(&:name).to_json %>　//部署の名前を取得する
+
 var barChartData = {
     labels: <%= raw @labels %>,
     datasets: [
     {
-        label: 'acctive-score',
+        label: '不要になった件数',
         data: <%= raw @active_score_data %>,
         borderColor : "rgba(254,97,132,0.8)",
         backgroundColor : "rgba(254,97,132,0.5)",
     },
     {
-        label: 'passive-score',
+        label: '引き取り件数',
         data: <%= raw @passive_score_data %>,
         borderColor : "rgba(54,164,235,0.8)",
         backgroundColor : "rgba(54,164,235,0.5)",

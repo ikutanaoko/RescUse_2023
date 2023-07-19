@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :products, foreign_key: :giver_id
   has_many :products, foreign_key: :taker_id
   has_many :favorites, dependent: :destroy
-  has_many :comment
+  has_many :comments
   has_many :read_counts, dependent: :destroy
   
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visiter_id', dependent: :destroy
@@ -27,6 +27,14 @@ class User < ApplicationRecord
   
   def will_save_change_to_email?
     false
+  end
+  
+  def status
+    if is_deleted == false
+      "有効"
+    else
+      "無効"
+    end
   end
   
 end

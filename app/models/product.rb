@@ -19,7 +19,7 @@ default_scope -> { order(created_at: :desc) }
     end
   end
 
-  def is_closed?
+  def is_closed_text
     if is_closed == true
       "CLOSED"
     else
