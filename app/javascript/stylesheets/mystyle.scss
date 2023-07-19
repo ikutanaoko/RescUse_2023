@@ -2,14 +2,13 @@ a {
  color: #008b8b; 
 }
 
-.mypage_content {
+.mypage-content {
   border: 3px solid rgb(26,146,86);
   border-radius: 5px;
   padding: px;
   margin: 8px;
   background-color: #E9FDF3;
 }
-
 
 .new-product {
   border-radius: 15px;
@@ -65,6 +64,13 @@ a {
 
 }
 
-.notification_box {
+.notification-box {
   background-color: #E9FDF3;
+}
+
+.userpage-content {
+  border: 2px solid rgb(26,146,86);
+  border-radius: 5px;
+  padding: 5px;
+
 }

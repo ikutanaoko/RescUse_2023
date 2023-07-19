@@ -8,13 +8,14 @@ class Public::CommentsController < ApplicationController
     @product = Product.find(params[:product_id])
     @comment = @product.comments.new(comment_params)
     @comment.user_id = current_user.id
-    @comments = @product.comments.order(created_at: :desc)
+    @comments = @product.comments
     @comment_reply = @product.comments.new(comment_params)
     if @comment.save
       if @comment.parent_id.blank?
         @product.create_notification_comment(current_user)
       else
-        @comment.create_notification_reply(current_user)
+        @comment.create_notification_reply(current_user,params[:comment][:notification_reply_id])
+        
       end
         flash.now[:notice] = "コメントの投稿に成功しました。"
       @comment_reply = @product.comments.new
@@ -32,7 +33,6 @@ class Public::CommentsController < ApplicationController
 
 
   def destroy
-
     @product = Product.find(params[:product_id])
     @comment = Comment.find(params[:id])
     @comments = @product.comments.order(created_at: :desc)

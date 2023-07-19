@@ -30,6 +30,17 @@
                     </ul>
                   </li>
                   <li><%= link_to destroy_user_session_path, method: :delete, class: 'btn navbar-btn' do %>ログアウト<% end %></li>
+                <% elsif admin_signed_in? %>
+                  <li><div class='btn navbar-btn'>メニュー</div>
+                    <ul class="drop-menu">
+                      <li><%= link_to "社員一覧", admin_users_path, class: "drop-menu-link" %></li>
+                      <li><%= link_to "部署一覧", admin_departments_path, class: "drop-menu-link" %></li>
+                      <li><%= link_to "タグ一覧", admin_tags_path, class: "drop-menu-link" %></li>
+                      <li><%= link_to "投稿備品一覧", admin_products_path, class: "drop-menu-link" %></li>
+                    </ul>
+                  </li>
+                  <li><%= link_to destroy_admin_session_path, method: :delete, class: 'btn navbar-btn' do %>ログアウト<% end %></li>
+                
                 <% else %>
                   <li><%= link_to "初めての方", about_path, class: 'btn navbar-btn' %></li>
                   <li><%= link_to "問い合わせ", new_inquiry_path, class: 'btn navbar-btn' %></li>

@@ -59,17 +59,13 @@
         <% if @product.giver_id == current_user.id %>
           <tr>
             <td class="pl-3"><%= link_to edit_product_path do %><div class="btn btn-secondary align-center px-4 py-2">編集する</div><% end %></td>
-            
-            <%= form_with model: @product, local:true do |f| %>
-              <% if @product.is_closed == false %>
-                <%= f.hidden_field :is_closed, :value => true %>
-                <td class="pl-3"><%= f.submit "非公開にする", class: 'btn btn-success align-center px-4 py-2' %></td>
-              <% elsif @product.taker_id.present? %>
-                <td class="pl-3 font-weight-bold"><%= @product.taker.name %>(<%= @product.taker.department.name %>)さんが引き取り済み</td> 
-              <% else %>
-                <%= f.hidden_field :is_closed, :value => false %>
-                <td class="pl-3"><%= f.submit "公開にする", class: 'btn btn-primary align-center px-4 py-2' %></td>
-              <% end %>
+            <% if @product.taker_id.present? %>
+              <td class="pl-3 font-weight-bold"><%= @product.taker.name %>(<%= @product.taker.department.name %>)さんが引き取り済み</td> 
+            <% elsif @product.is_closed? %>
+              <td class="pl-3"><%= link_to "公開にする", update_status_product_path, method: :patch, class: 'btn btn-success align-center px-4 py-2' %></td>
+            <% else %>
+              <td class="pl-3"><%= link_to "非公開にする", update_status_product_path, method: :patch, class: 'btn btn-success align-center px-4 py-2' %></td>
+
             <% end %>
           </tr>
         <!--ここまで-->

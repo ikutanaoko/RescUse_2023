@@ -1,2 +1,21 @@
-<h1>Admin::Products#show</h1>
-<p>Find me in app/views/admin/products/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <table class="table table-borderless">
+      <tr>
+        <th><%= @product.giver.name %></th>
+        <th><%= @product.name %></th>
+        <th><%= @product.status %></th>
+            <% if @product.taker_id.present? %>
+              <td class="pl-3 font-weight-bold"><%= @product.taker.name %>(<%= @product.taker.department.name %>)さんが引き取り済み</td> 
+            <% elsif @product.is_closed? %>
+              <td class="pl-3"><%= link_to "公開にする", admin_product_path,method: :patch %></td>
+            <% else %>
+              <td class="pl-3"><%= link_to "非公開にする", admin_product_path, method: :patch %></td>
+
+            <% end %>
+
+      </tr>
+    </table>
+    <hr>
+  </div>
+</div>

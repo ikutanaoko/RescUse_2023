@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  default_scope -> { order(created_at: :desc) }
+  
   belongs_to :product
   belongs_to :user
   belongs_to :parent, class_name: "Comment", optional: true
@@ -8,10 +10,10 @@ class Comment < ApplicationRecord
   
   validates :body,presence:true
   
-  def create_notification_reply(current_user)
+  def create_notification_reply(current_user,reply_comment_id)
     notification = current_user.active_notifications.new(
       parent_id: parent_id,
-      visited_id: parent.user_id,
+      visited_id: Comment.find(reply_comment_id).user.id,
       action: 'reply'
       )
 

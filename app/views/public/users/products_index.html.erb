@@ -17,10 +17,10 @@
       <td><%= product.created_at.strftime('%Y/%-m/%-d') %></td>
   　　<td class="d-inline-block text-truncate", style="width: 400px;" ><%= link_to product.name, product_path(product) %></td>
       <td>
-        <% if product.is_closed? == "OPEN" %>
-          <b class="open-product"><%= product.is_closed? %></b>
+        <% if product.is_closed? %>
+          <b class="open-product"><%= product.is_closed_text %></b>
         <% else %>
-          <b class="closed-product"><%= product.is_closed? %></b>
+          <b class="closed-product"><%= product.is_closed_text %></b>
         <% end %>
       </td>
       <td><%= product.favorites.count %></td>

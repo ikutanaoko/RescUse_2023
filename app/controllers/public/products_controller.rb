@@ -16,7 +16,7 @@ class Public::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @tags = @product.tags
     @user = @product.giver
-    @comments = @product.comments.order(created_at: :desc)
+    @comments = @product.comments
     @comment = Comment.new
     @comment_reply = @product.comments.new
 
@@ -73,6 +73,12 @@ class Public::ProductsController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def update_status
+    product = Product.find(params[:id])
+    product.update(is_closed: !product.is_closed)
+    redirect_to product_path(product), notice: "情報の更新に成功しました。"
   end
 
   def confirm
