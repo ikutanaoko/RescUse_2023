@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
+  before_action :search
   
   def index
     @users = User.page(params[:page]).per(20)
@@ -22,6 +24,11 @@ class Admin::UsersController < ApplicationController
     else
       render "edit"
     end
+  end
+  
+  def search
+    @q = User.ransack(params[:q])
+    @users = @q.result.page(params[:page])
   end
   
   def user_params

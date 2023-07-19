@@ -1,28 +1,10 @@
 <div class="container">
   <div class="row">
     <h5 class="font-weight-bold ml-3">投稿備品一覧</h5>
+    <div class="ml-auto"><%= render 'admin/products/search', q: @q, url: search_admin_products_path %></div>
 
-    <table class="table table-sm">
-      <thead>
-        <tr>
-          <th>投稿日</th>
-          <th>投稿者</th>
-          <th>製品名・型式</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @products.each do |product| %>
-      <tr>
-        <td><%= product.created_at.strftime('%Y/%-m/%-d') %></td>
-        <td><%= link_to product.giver.name, admin_user_path(product.giver_id) %>(<%= product.giver.department.name %>)</td>
-          <td class="d-inline-block text-truncate", style="width: 300px;"><%= link_to product.name, admin_product_path(product) %></td>
-          <td><%= product.is_closed_text %></td>
-      </tr>
-      </tbody>
-    <% end %>
-    </table>
-    
+    <%= render "admin/products/index", products: @products %>
+
     <div class="text-center mx-auto">
     <hr>
       <%= paginate @products %>

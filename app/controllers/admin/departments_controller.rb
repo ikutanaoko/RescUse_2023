@@ -18,6 +18,8 @@ class Admin::DepartmentsController < ApplicationController
   end
 
   def show
+    @department = Department.find(params[:id])
+    @users = @department.users.page(params[:page])
   end
 
   def edit
@@ -31,7 +33,12 @@ class Admin::DepartmentsController < ApplicationController
     redirect_to admin_departments_path
   end
 
-#削除機能は未実装
+  def destroy
+    department = Department.find(params[:id])
+    department.destroy
+    flash[:notice] = "データを削除しました"
+    redirect_to admin_tags_path
+  end
 
   private
 

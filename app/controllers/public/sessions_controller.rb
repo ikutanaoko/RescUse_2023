@@ -26,7 +26,18 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
+  def reject_user
+    @user = User.find_by(name: params[:user][:employee_number])
+    if @user 
+      if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
+        flash[:notice] = "無効なアカウントです。管理者までお問い合わせ。"
+        redirect_to new_user_registration
+      else
+        flash[:notice] = "項目を入力してください"
+      end
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
