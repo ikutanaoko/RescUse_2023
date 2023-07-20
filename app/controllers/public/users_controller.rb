@@ -6,7 +6,7 @@ class Public::UsersController < ApplicationController
     @used_products = Product.where(is_used:"true", is_closed:"false")
     @notifications = current_user.passive_notifications
     @departments = Department.all
-    @labels = Department.all.pluck(:name)
+    @labels = Department.all.order('id ASC').pluck(:name)
     @active_score_data = Score.group(:department_id).order('department_id ASC').sum(:active_score).values
     @passive_score_data = Score.group(:department_id).order('department_id ASC').sum(:passive_score).values
   end
