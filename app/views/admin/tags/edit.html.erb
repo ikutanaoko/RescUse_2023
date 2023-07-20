@@ -2,6 +2,10 @@
   <div class="row">
     <h5 class="font-weight-bold ml-3">タグ編集</h5>
   </div>
+  <div class="row ml-1">
+    <%= render 'layouts/error_messages', obj: @tag %>
+  </div>
+
   <div class="row">
       <%= form_with model: [:admin,@tag] do |f| %>
         <div class="form mr-5">

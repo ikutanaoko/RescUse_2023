@@ -2,8 +2,13 @@
   <div class="row">
     <h5 class="font-weight-bold ml-3">部門編集</h5>
   </div>
+    </div>
+  <div class="row ml-1">
+    <%= render 'layouts/error_messages', obj: @department %>
+  </div>
+
   <div class="row">
-      <%= form_with model: [:admin,@tag] do |f| %>
+      <%= form_with model: [:admin,@department] do |f| %>
         <div class="form mr-5">
 
           <%= f.text_field :name %>
@@ -11,6 +16,6 @@
         </div>
       <% end %>
       <div><%= link_to "削除", admin_tag_path, method: :delete %></div>
-      <div class="ml-3"><%= link_to "戻る", admin_tags_path %></div>
+      <div class="ml-3"><%= link_to "戻る", admin_departments_path %></div>
   </div>
 </div>

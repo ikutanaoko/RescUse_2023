@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, authentication_keys: [:employee_number]
+         validates :name, presence: true
+         validates :employee_number, presence: true, length: { minimum: 5 }
 
   belongs_to :department
   has_many :scores
@@ -14,7 +16,7 @@ class User < ApplicationRecord
 
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visiter_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
-  
+
   def active_for_authentication?
     super && (is_deleted == false)
   end
@@ -41,10 +43,16 @@ class User < ApplicationRecord
     end
   end
 
-  def self.ransackable_attributes(auth_object = nil)
-    ["employee_number","name"]
+
+  def self.ransackable_associations(auth_object = nil)
+    ["department"]
   end
-  
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["employee_number", "name"]
+  end
+
+
   GUEST_USER_EMPLOYEE_NUMBER = "123456"
 
   def self.guest
@@ -52,14 +60,14 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
       user.department = Department.first
       user.name = "guestuser"
-      
+
     end
   end
-  
-  
+
+
   def guest_user?
     employee_number == GUEST_USER_EMPLOYEE_NUMBER
   end
-  
-  
+
+
 end

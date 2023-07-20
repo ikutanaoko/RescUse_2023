@@ -10,6 +10,10 @@ default_scope -> { order(created_at: :desc) }
   has_many :replies, class_name: "Comment", foreign_key: :parent_id, dependent: :destroy
   has_many :read_counts, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  
+  validates :name,  presence: true
+  validates :price,  presence: true
+  validates :count,  presence: true
 
   def status
     if is_used == true
