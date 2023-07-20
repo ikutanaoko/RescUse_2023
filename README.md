@@ -1,5 +1,5 @@
 # RescUse
-![マイページ](app/assets/images/readme/README1.png)
+![マイページ](app/assets/images/readme/README3.png)
 ![詳細ページ](app/assets/images/readme/README2.png)
 
 ## サイト概要
@@ -29,6 +29,7 @@
 ## 設計書
 　[ER図](https://app.diagrams.net/#G1GqhmY6fKODxTdR_TeFBp8qMigQ2boo7u)
 　[ワイヤーフレーム](https://www.figma.com/file/xFzK5oPiVT7EiODVQT8TMH/PF?type=design&node-id=0-1&mode=design&t=rEN90O80gMap3N8d-0)
+　[アプリケーション詳細設計](https://drive.google.com/drive/my-drive)
 
 ## 実装機能
 
@@ -36,6 +37,8 @@
   - 退職した社員を退会させる機能
   - 不適切な投稿を削除する機能
   - 部署の管理機能
+  - コメント管理機能
+  - ユーザー及び投稿の検索機能
 
 - 利用者側
   - 手配開始しているが不要になった備品(未使用品)の情報投稿
@@ -50,7 +53,6 @@
 
 - その他
   - 出品件数と引き取り件数をグラフ化
-  - キーワード検索機能
   - タグ検索機能
 
 
@@ -63,4 +65,3 @@
 
 ## 使用素材
 - 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
