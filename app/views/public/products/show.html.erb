@@ -44,10 +44,10 @@
 
       <div>
         <% @tags.each do |tag| %>
-          <i class="fas fa-tag pl-3"></i><%= link_to tag.name, tags_path(tag) %>(<%= tag.products.count %>)
+          <i class="fas fa-tag pl-3"></i><%= link_to tag.name, tags_path(id: tag.id) %>(<%= tag.products.count %>)
         <% end %>
       </div>
-      <table class="my-2">
+      <table class="my-1">
         <% if @product.image_url.present? %>
           <tr >
             <td class="p-3"><%= image_tag @product.image_url, size: "100x100" %></td>
@@ -55,6 +55,9 @@
           </tr>
         <% end %>
 
+      </table>
+      </diV>
+        <table class="table-sm">
         <!--投稿者の画面に表示-->
         <% if @product.giver_id == current_user.id %>
           <tr>
@@ -65,20 +68,27 @@
               <td class="pl-3"><%= link_to "公開にする", update_status_product_path, method: :patch, class: 'btn btn-success align-center px-4 py-2' %></td>
             <% else %>
               <td class="pl-3"><%= link_to "非公開にする", update_status_product_path, method: :patch, class: 'btn btn-success align-center px-4 py-2' %></td>
-
             <% end %>
           </tr>
         <!--ここまで-->
-        
-        <% elsif @product.is_closed == false %>
           <tr>
-            <%= link_to "引取完了報告", confirm_product_path, class: "btn btn-info" %>  
+          <% elsif @product.is_closed == false %>
+            <%= link_to "引取完了報告", confirm_product_path, class: "btn btn-info" %>
+          <% end %>
           </tr>
-        <% end %>
-      </table>
-      
-      </diV>
+        </table>
+
+        <div class="d-flex">
+          <div class="ml-auto">
+          <!-- Rakuten Web Services Attribution Snippet FROM HERE -->
+          	<a href="https://webservice.rakuten.co.jp/" target="_blank"><img src="https://webservice.rakuten.co.jp/img/credit/200709/credit_22121.gif" border="0" alt="Rakuten Web Service Center" title="Rakuten Web Service Center" width="221" height="21"/></a>
+      　   <!-- Rakuten Web Services Attribution Snippet TO HERE -->
+            </tr>
+          </div>
+        </div>
+
     </div>
+    
     <div class="col-md-5 offset-md-1 col-12 mt-5">
       <h5>出品者　：<%= @product.giver.name %>(<%= @product.giver.department.name %>)</h5>
       <div id="comments_area">

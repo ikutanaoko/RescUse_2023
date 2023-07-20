@@ -45,4 +45,21 @@ class User < ApplicationRecord
     ["employee_number","name"]
   end
   
+  GUEST_USER_EMPLOYEE_NUMBER = "123456"
+
+  def self.guest
+    find_or_create_by!(employee_number: GUEST_USER_EMPLOYEE_NUMBER) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.department = Department.first
+      user.name = "guestuser"
+      
+    end
+  end
+  
+  
+  def guest_user?
+    employee_number == GUEST_USER_EMPLOYEE_NUMBER
+  end
+  
+  
 end

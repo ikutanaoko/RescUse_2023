@@ -1,10 +1,9 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
-  before_action :search
   
   def index
     @users = User.page(params[:page]).per(20)
-    
+    @q = User.ransack(params[:q])
   end
   
   def show
