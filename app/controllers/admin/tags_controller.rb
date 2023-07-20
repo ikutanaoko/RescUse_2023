@@ -7,17 +7,14 @@ class Admin::TagsController < ApplicationController
   end
 
   def create
-    @tag = Tag.new(department_params)
+    @tag = Tag.new(tag_params)
     if @tag.save
       flash[:notice] = "データの追加に成功しました"
       redirect_to admin_tags_path
     else
-      @tag = Tag.all
+      @tags = Tag.all
       render :index
     end
-  end
-
-  def show
   end
 
   def edit
@@ -25,10 +22,13 @@ class Admin::TagsController < ApplicationController
   end
 
   def update
-    tag = Tag.find(params[:id])
-    tag.update(tag_params)
-    flash[:notice] = "データの更新に成功しました"
-    redirect_to admin_tags_path
+    @tag = Tag.find(params[:id])
+    if @tag.update(tag_params)
+      flash[:notice] = "データの更新に成功しました"
+      redirect_to admin_tags_path
+    else
+      render :edit
+    end 
   end
 
   def destroy
@@ -40,7 +40,7 @@ class Admin::TagsController < ApplicationController
 
   private
 
-  def department_params
+  def tag_params
   params.require(:tag).permit(:name)
   end
 

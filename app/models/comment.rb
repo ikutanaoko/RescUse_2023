@@ -8,7 +8,7 @@ class Comment < ApplicationRecord
   has_many :replies, class_name: "Comment", foreign_key: :parent_id, dependent: :destroy
   has_many :notifications, foreign_key: :parent_id, dependent: :destroy
   
-  validates :body,presence:true
+  validates :body, presence:true
   
   def create_notification_reply(current_user,reply_comment_id)
     notification = current_user.active_notifications.new(

@@ -27,10 +27,13 @@ class Admin::DepartmentsController < ApplicationController
   end
 
   def update
-    department = Department.find(params[:id])
-    department.update(department_params)
-    flash[:notice] = "データの更新に成功しました"
-    redirect_to admin_departments_path
+    @department = Department.find(params[:id])
+    if  @department.update(department_params)
+      flash[:notice] = "データの更新に成功しました"
+      redirect_to admin_departments_path
+    else
+      render :edit
+    end
   end
 
   def destroy

@@ -34,7 +34,7 @@
             <%= f.label :tag_ids, 'タグ' %>
           </td>
           <td>
-            <%= f.collection_check_boxes :tag_ids, @tags, :id, :name do |b| %>
+            <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
             <span><%= b.check_box %><%= b.label %></span>
             <% end %>
           </td>

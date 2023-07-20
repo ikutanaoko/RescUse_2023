@@ -28,7 +28,6 @@ class Public::ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @tags = Tag.all
 
 
   end
