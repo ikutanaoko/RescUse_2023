@@ -1,4 +1,6 @@
 # RescUse
+![マイページ](app/assets/images/readme/README1.png)
+![詳細ページ](app/assets/images/readme/README2.png)
 
 ## サイト概要
 社内で不要となった備品の転用先部署を探すアプリケーション
@@ -26,6 +28,7 @@
 
 ## 設計書
 　[ER図](https://app.diagrams.net/#G1GqhmY6fKODxTdR_TeFBp8qMigQ2boo7u)
+　[ワイヤーフレーム](https://www.figma.com/file/xFzK5oPiVT7EiODVQT8TMH/PF?type=design&node-id=0-1&mode=design&t=rEN90O80gMap3N8d-0)
 
 ## 実装機能
 
