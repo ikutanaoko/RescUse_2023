@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, authentication_keys: [:employee_number]
          validates :name, presence: true
-         validates :department,  presence: true
          validates :employee_number, presence: true, length: { minimum: 5 }
 
   belongs_to :department

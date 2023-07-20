@@ -12,7 +12,6 @@ default_scope -> { order(created_at: :desc) }
   has_many :notifications, dependent: :destroy
   
   validates :name,  presence: true
-  validates :information,  presence: true
   validates :price,  presence: true
   validates :count,  presence: true
 

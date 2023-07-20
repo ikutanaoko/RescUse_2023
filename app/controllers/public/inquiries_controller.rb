@@ -10,7 +10,7 @@ class Public::InquiriesController < ApplicationController
       redirect_to  inquiry_completion_path
     else
       @inquiry_new = Inquiry.new
-      render :inew
+      render :new
     end
   end
   
