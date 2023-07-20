@@ -1,7 +1,7 @@
 <%= render "public/shared/error_messages", resource: resource %>
 
 <div class="row">
-  <div class="col-5 align-middle mx-auto border-success py-3 mt-3" style="background-color:#d3d3d3;">
+  <div class="col-6 align-middle mx-auto border-success py-3 mt-3" style="background-color:#d3d3d3;">
     <h5 class="text-center font-weight-bold">新規利用登録</h5>
 
     <%= form_with model: @user, url: user_registration_path do |f| %>
@@ -17,7 +17,7 @@
         </tr>
   
         <tr>
-        <td><%= f.label :department_id, '所属部署' %></td>
+        <td><%= f.label :department_id, '所属部門' %></td>
         <td><%= f.select :department_id, Department.pluck(:name, :id), { include_blank: "--選択してください--"} %></td>
         </tr>
 

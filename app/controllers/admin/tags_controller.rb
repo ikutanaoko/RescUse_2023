@@ -31,7 +31,12 @@ class Admin::TagsController < ApplicationController
     redirect_to admin_tags_path
   end
 
-#削除機能は未実装
+  def destroy
+    tag = Tag.find(params[:id])
+    tag.destroy
+    flash[:notice] = "データを削除しました"
+    redirect_to admin_tags_path
+  end
 
   private
 

@@ -47,6 +47,9 @@ default_scope -> { order(created_at: :desc) }
     end
   end
   
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
 
 
 end

@@ -12,9 +12,14 @@
     <hr>
     <hr>
     <%= form_with url: reference_product_path, method: :get, local:true do |f| %>
-    <div class="form-group">
+    <div class="d-flex form-group">
       <%= f.text_field :keyword, value: params[:keyword] %>
-      <%= f.submit '製品を検索', class: "btn btn-success" %>
+      <%= f.submit '製品を検索' %>
+      <div class="ml-auto">
+    	<!-- Rakuten Web Services Attribution Snippet FROM HERE -->
+    	<a href="https://webservice.rakuten.co.jp/" target="_blank"><img src="https://webservice.rakuten.co.jp/img/credit/200709/credit_22121.gif" border="0" alt="Rakuten Web Service Center" title="Rakuten Web Service Center" width="221" height="21"/></a>
+　    <!-- Rakuten Web Services Attribution Snippet TO HERE -->
+      </div>
     </div>
     <% end %>
 

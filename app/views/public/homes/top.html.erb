@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-5 align-middle mx-auto border-success py-3 mt-5" style="background-color:#d3d3d3;">
+  <div class="col-6 align-middle mx-auto border-success py-3 mt-5" style="background-color:#d3d3d3;">
 
       ログインは<%= link_to "こちら", new_user_session_path %>から<br><br>
-      <%= link_to "ゲストログイン", "" %>
+      <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
 
   </div>
 </div>
