@@ -1,8 +1,6 @@
 class Public::CommentsController < ApplicationController
     before_action :authenticate_user!
-
-  def index
-  end
+    before_action :is_matching_login_user, only: [:destroy]
 
   def create
     @product = Product.find(params[:product_id])
@@ -28,10 +26,6 @@ class Public::CommentsController < ApplicationController
   end
   
 
-  def show
-  end
-
-
   def destroy
     @product = Product.find(params[:product_id])
     @comment = Comment.find(params[:id])
@@ -43,9 +37,16 @@ class Public::CommentsController < ApplicationController
     end
   end
 
-   private
+  private
     def comment_params
       params.require(:comment).permit(:body, :user_id, :product_id, :parent_id)
+    end
+    
+    def is_matching_login_user
+      user = User.find(params[:id])
+      unless user.id == current_user.id
+        redirect_to post_images_path
+      end
     end
 
 end
