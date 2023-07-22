@@ -1,5 +1,6 @@
 class Public::ProductsController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_matching_login_user, only: [:edit, :update]
 
   def new_index
     @products = Product.where(is_used:"false", is_closed:"false").page(params[:page])
@@ -95,10 +96,17 @@ class Public::ProductsController < ApplicationController
 
   private
 
-  def product_params
-  params.require(:product).permit(:giver_id, :name, :detail_page, :information, :price, :count,
-  :is_closed, :is_used, :taker_id, tag_ids: [])
-  end
+    def product_params
+    params.require(:product).permit(:giver_id, :name, :detail_page, :information, :price, :count,
+    :is_closed, :is_used, :taker_id, tag_ids: [])
+    end
+    
+    def is_matching_login_user
+      user = User.find(params[:id])
+      unless user.id == current_user.id
+        redirect_to post_images_path
+      end
+    end
 
 
 end

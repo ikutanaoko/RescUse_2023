@@ -13,22 +13,22 @@
           <td><%= f.label :name, '製品名/型式' %></td>
           <td><%= f.text_field :name, class: "col-12" %></td>
         </tr>
-        
+
         <tr class="form-group">
         <td><%= f.label :price, '税抜価格(円)' %></td>
         <td><%= f.text_field :price, placeholder: "1000", class: "col-12" %></td>
         </tr>
-        
+
         <tr class="form-group">
         <td><%= f.label :count, '数量' %></td>
         <td><%= f.text_field :count, placeholder: "10", class: "col-11" %>個</td>
         </tr>
-        
+
         <tr class="form-group">
           <td><%= f.label :information, '備考' %></td>
           <td><%= f.text_area :information, placeholder: "ここに備考を記入します", class: "col-12" %></td>
         </tr>
-        
+
         <tr class="form-group">
           <td>
             <%= f.label :tag_ids, 'タグ' %>
@@ -39,7 +39,7 @@
             <% end %>
           </td>
         </tr>
-        
+
       <% unless local_assigns[:edit].present? %>
 
         <tr class="form-group">

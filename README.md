@@ -1,5 +1,5 @@
 # RescUse
-![マイページ](app/assets/images/readme/README3.png)
+![マイページ](app/assets/images/readme/README1.png)
 ![詳細ページ](app/assets/images/readme/README2.png)
 
 ## サイト概要
