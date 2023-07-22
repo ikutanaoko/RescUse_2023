@@ -14,26 +14,31 @@
   <div class="col-7">
     <div class="row mx-2 text-center">
       <div class="col-4 mx-0 mypage-content">
-        <h5 class="font-weight-bold"><%= link_to "投稿履歴", users_products_index_path %></h5>
+        <h5 class="font-weight-bold"><%= link_to "出品履歴", users_products_index_path %></h5>
       </div>
       <div class="col-4 mx-0 mypage-content">
         <h5 class="font-weight-bold"><%= link_to "引取履歴", index_path %></h5>
       </div>
       <div  class="col-4 mx-0 mypage-content">
-        <h5 class="font-weight-bold"><%=link_to favorites_path do %>保存済み<span class="text-warning text-opacity-50">★</span><% end %></h5>
+        <h5 class="font-weight-bold">
+          <%=link_to favorites_path do %>
+            保存済み
+            <span class="text-warning text-opacity-50">★</span>
+          <% end %>
+        </h5>
       </div>
     </div>
 
     <div class="mypage-content">
       <h5 class="font-weight-bold">新着の未開封引取募集備品</h5>
-      <%= render 'product', products:@new_products %>
+      <%= render 'product', products: @new_products %>
       <div class="text-right">
         <%= link_to "もっと見る...", new_products_path %>
       </div>
     </div>
     <div class="mypage-content">
       <h5 class="font-weight-bold">新着の開封済引取募集備品</h5>
-      <%= render 'product', products:@used_products %>
+      <%= render 'product', products: @used_products %>
       <div class="text-right">
         <%= link_to "もっと見る...", used_products_path %>
       </div>
@@ -58,17 +63,17 @@ window.onload = function() {
 <script>
 
 var barChartData = {
-    labels: <%= raw @labels %>,
+    labels: <%= raw @departments.map(&:name) %>,
     datasets: [
     {
         label: '不要になった件数',
-        data: <%= raw @active_score_data %>,
+        data: <%= raw @departments.map(&:sum_active_score) %>,
         borderColor : "rgba(254,97,132,0.8)",
         backgroundColor : "rgba(254,97,132,0.5)",
     },
     {
         label: '引き取り件数',
-        data: <%= raw @passive_score_data %>,
+        data: <%= raw @departments.map(&:sum_passive_score) %>,
         borderColor : "rgba(54,164,235,0.8)",
         backgroundColor : "rgba(54,164,235,0.5)",
     },
