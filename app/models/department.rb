@@ -1,6 +1,6 @@
 class Department < ApplicationRecord
-  validates :name, presence: true
-
   has_many :users
+  has_many :scores
 
+  validates :name, presence: true
 end

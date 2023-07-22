@@ -5,10 +5,9 @@ class Public::UsersController < ApplicationController
     @new_products = Product.where(is_used:"false", is_closed:"false")
     @used_products = Product.where(is_used:"true", is_closed:"false")
     @notifications = current_user.passive_notifications
-    @departments = Department.all
-    @labels = Department.all.order('id ASC').pluck(:name)
-    @active_score_data = Score.group(:department_id).order('department_id ASC').sum(:active_score).values
-    @passive_score_data = Score.group(:department_id).order('department_id ASC').sum(:passive_score).values
+    
+    # @departmentsとしてそれぞれのスコアを格納するSQL
+    @departments = Department.left_joins(:scores).group(:id).select(:name, "COALESCE(SUM('scores'.'active_score'), 0) AS sum_active_score", "COALESCE(SUM('scores'.'passive_score'), 0) AS sum_passive_score").order(:id)
   end
 
   def edit
