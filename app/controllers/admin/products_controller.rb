@@ -1,6 +1,6 @@
 class Admin::ProductsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :search
+
   
   def index
     @products = Product.page(params[:page]).per(20)
@@ -10,7 +10,7 @@ class Admin::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @comments = @product.comments.page(params[:page])
-
+    @tags = @product.tags
   end
 
 

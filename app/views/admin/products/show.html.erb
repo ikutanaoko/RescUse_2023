@@ -1,44 +1,57 @@
 <div class="container">
   <div class="row">
-    <table class="table table-borderless">
-      <tr>
-        <th class="pb-0">ID:<%= @product.id %></th>
-        <th class="pb-0">ID:<%= @product.created_at.strftime('%Y/%-m/%-d  %H:%M') %></th>
-        <th class="pb-0"><%= @product.giver.name %></th>
-        <th class="pb-0"><%= @product.name %></th>
-        <th class="pb-0"><%= @product.status %></th>
-        <th class="pb-0">
-            <% if @product.taker_id.present? %>
-              <%= @product.taker.name %>(<%= @product.taker.department.name %>)さんが引き取り済み
-            <% elsif @product.is_closed? %>
-              <%= link_to "公開にする", admin_product_path,method: :patch %>
-            <% else %>
-              <%= link_to "非公開にする", admin_product_path, method: :patch %>
+    <div class="row">
+      <table class="table table-borderless">
+        <tr>
+          <th class="pb-0"><%= @product.created_at.strftime('%Y/%-m/%-d  %H:%M') %></th>
+          <th class="pb-0">ID:<%= @product.id %></th>
+          <th class="pb-0"><%= @product.giver.name %></th>
+          <th class="pb-0", style="width: 350px;"><%= @product.name %></th>
+          <th class="pb-0"><%= @product.status %></th>
+          <th class="pb-0">
+              <% if @product.taker_id.present? %>
+                <%= @product.taker.name %>(<%= @product.taker.department.name %>)さんが引き取り済み(<%= @product.updated_at.strftime('%Y/%-m/%-d') %>)
+              <% elsif @product.is_closed? %>
+                <%= link_to "公開にする", admin_product_path,method: :patch %>
+              <% else %>
+                <%= link_to "非公開にする", admin_product_path, method: :patch %>
+              <% end %>
+          </th>
+        </tr>
+      </table>
+      <table class="table table-borderless">
+        <tr>
+          <th class="py-0">個数：<%= @product.count %></th>
+          <th class="py-0">価格：<%= @product.price.to_s(:delimited) %>円</th>
+          <% if @product.detail_page.present? %>
+            <th class="py-0">類似品ページ：<%= link_to @product.detail_page, @product.detail_page, target: :_blank, rel: "noopener noreferrer" %></th>
+          <% end %>
+          <th style="width: 200px;">
+            <% if @tags.present? %>
+              <% @tags.each do |tag| %>
+                <i class="fas fa-tag pl-3"></i><%= tag.name %>
+              <% end %>
             <% end %>
-        </th>
-      </tr>
-    </table>
-    <table class="table table-borderless">
-      <tr>
-        <th class="py-0">個数：<%= @product.count %></th>
-        <th class="py-0">価格：<%= @product.price.to_s(:delimited) %>円</th>
-        <% if @product.detail_page.present? %>
-          <th class="py-0">類似品ページ：<%= link_to @product.detail_page, @product.detail_page, target: :_blank, rel: "noopener noreferrer" %></th>
-        <% end %>
-      </tr>
-    </table>
-    <h4>コメント</h4>
-    <table class="table table-sm">
-      <% @comments.each do |comment| %>
-      <tr>
-        <td><%= comment.created_at.strftime('%Y/%-m/%-d  %H:%M') %></td>
-        <td><%= comment.user.name %>(<%= comment.user.department.name %>)</td>
-        <td style="width: 60%;"><%= comment.body %></td>
+          </th>
+        </tr>
+      </table>
 
-        <td><%= link_to"削除", admin_product_comment_path(comment.product, comment), method: :delete %></td>
-      </tr>
-      <% end %>
-    </table>
+      <div class="pt-0 pb-2 ml-2">備考：<%= @product.information %></div>
+    </div>
+    <div class="row ml-1", style="width: 100%;">
+      <h4>コメント</h4>
+      <table class="table table-sm">
+        <% @comments.each do |comment| %>
+        <tr>
+          <td><%= comment.created_at.strftime('%Y/%-m/%-d  %H:%M') %></td>
+          <td><%= comment.user.name %>(<%= comment.user.department.name %>)</td>
+          <td style="width: 60%;"><%= comment.body %></td>
+  
+          <td><%= link_to"削除", admin_product_comment_path(comment.product, comment), method: :delete %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
   </div>    
   <div class="row">
     <div class="text-center mx-auto">

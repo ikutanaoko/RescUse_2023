@@ -63,7 +63,7 @@
           <tr>
             <td class="pl-3"><%= link_to edit_product_path do %><div class="btn btn-secondary align-center px-4 py-2">編集する</div><% end %></td>
             <% if @product.taker_id.present? %>
-              <td class="pl-3 font-weight-bold"><%= @product.taker.name %>(<%= @product.taker.department.name %>)さんが引き取り済み</td> 
+              <td class="pl-3 font-weight-bold"><%= @product.taker.name %>(<%= @product.taker.department.name %>)さんが引き取り済み(<%= @product.updated_at.strftime('%Y/%-m/%-d') %>)</td> 
             <% elsif @product.is_closed? %>
               <td class="pl-3"><%= link_to "公開にする", update_status_product_path, method: :patch, class: 'btn btn-success align-center px-4 py-2' %></td>
             <% else %>
