@@ -44,7 +44,7 @@
 
       <div>
         <% @tags.each do |tag| %>
-          <i class="fas fa-tag pl-3"></i><%= link_to tag.name, tags_path(id: tag.id) %>(<%= tag.products.count %>)
+          <i class="fas fa-tag pl-3"></i><%= link_to tag.name, tags_path(id: tag.id) %>
         <% end %>
       </div>
       <table class="my-1">
@@ -54,6 +54,10 @@
             <td class="pl-3"><%= link_to "楽天市場で類似商品の詳細を確認する", @product.detail_page, target: :_blank, rel: "noopener noreferrer" %></td>
           </tr>
         <% end %>
+          <tr>
+            <td></td>
+            <td class="text-right"><%= @product.created_at.strftime('%Y/%-m/%-d') %>出品</td>
+          </tr>
 
       </table>
       </diV>

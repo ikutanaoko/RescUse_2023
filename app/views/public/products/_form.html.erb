@@ -35,7 +35,7 @@
           </td>
           <td>
             <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
-            <span><%= b.check_box %><%= b.label %></span>
+            <span style="display: inline-block;"><%= b.check_box %><%= b.label %></span>
             <% end %>
           </td>
         </tr>

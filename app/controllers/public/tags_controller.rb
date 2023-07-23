@@ -7,7 +7,7 @@ class Public::TagsController < ApplicationController
     else
       @tag = Tag.first
     end
-    @products = @tag.products.page(params[:page])
+    @products = @tag.products.where(is_closed:"false").page(params[:page])
     @tags = Tag.all
   end
 
