@@ -43,9 +43,9 @@ default_scope -> { order(created_at: :desc) }
       )
 
     #本人からの通知のコメントを作成しない場合以下を記入
-    # if notification.visitor_id == notification.visited_id
-    #   notification.checked = true
-    # end
+    if notification.visitor_id == notification.visited_id
+      notification.checked = true
+    end
     if notification.valid?
     notification.save
     end

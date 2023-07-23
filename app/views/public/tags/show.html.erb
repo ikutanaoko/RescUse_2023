@@ -2,7 +2,7 @@
   <div><h5 class="font-weight-bold">タグから探す</h5></div>
   <div>
   <% @tags.each do |tag| %>
-    <i class="fas fa-tag pl-2"></i><%= link_to tag.name, tags_path(id: tag.id) %>(<%= tag.products.count %>)
+    <i class="fas fa-tag pl-2"></i><%= link_to tag.name, tags_path(id: tag.id) %>(<%= tag.products.where(is_closed:"false").count %>)
   <% end %>
 <div class="row">
   </div>

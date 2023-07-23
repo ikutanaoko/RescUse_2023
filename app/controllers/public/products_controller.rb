@@ -22,9 +22,9 @@ class Public::ProductsController < ApplicationController
     @comment_reply = @product.comments.new
 
     #1日に1人のユーザーの閲覧を最大1とする場合に使用
-    # unless ReadCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, product_id: @product.id)
+    unless ReadCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, product_id: @product.id)
     current_user.read_counts.create(product_id: @product.id)
-    # end
+    end
   end
 
   def new
@@ -74,7 +74,7 @@ class Public::ProductsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def update_status
     product = Product.find(params[:id])
     product.update(is_closed: !product.is_closed)
@@ -100,9 +100,10 @@ class Public::ProductsController < ApplicationController
     params.require(:product).permit(:giver_id, :name, :detail_page, :information, :price, :count,
     :is_closed, :is_used, :taker_id, tag_ids: [])
     end
-    
+
     def is_matching_login_user
-      user = User.find(params[:id])
+      product = Product.find(params[:id])
+      user = product.giver
       unless user.id == current_user.id
         redirect_to post_images_path
       end
