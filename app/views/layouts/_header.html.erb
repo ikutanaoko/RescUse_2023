@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header shadow-sm">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container header-nav-box">
       <%= link_to root_path do %>
@@ -11,6 +11,9 @@
           <div class="navbar-nav ml-auto">
             <div>
               <ul class="navbar-nav" id="nav">
+                
+                <!-- 社員ログイン時　-->
+                
                 <% if user_signed_in? %>
                   <li>
                     <%= link_to "マイページ", users_path, class: 'btn navbar-btn' %>
@@ -30,6 +33,9 @@
                     </ul>
                   </li>
                   <li><%= link_to destroy_user_session_path, method: :delete, class: 'btn navbar-btn' do %>ログアウト<% end %></li>
+                  
+                  <!-- 管理者ログイン時　-->
+                  
                 <% elsif admin_signed_in? %>
                   <li><div class='btn navbar-btn'>メニュー</div>
                     <ul class="drop-menu">
@@ -40,6 +46,8 @@
                     </ul>
                   </li>
                   <li><%= link_to destroy_admin_session_path, method: :delete, class: 'btn navbar-btn' do %>ログアウト<% end %></li>
+                  
+                  <!-- ログイン前　-->
                 
                 <% else %>
                   <li><%= link_to "初めての方", about_path, class: 'btn navbar-btn' %></li>
