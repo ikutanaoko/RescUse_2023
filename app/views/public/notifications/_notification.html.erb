@@ -1,0 +1,14 @@
+<ul>
+  <% notifications.each do |notification| %>
+  <li>
+    <strong><%= notification.visiter.name %></strong>さんから
+    <% case notification.action %>
+    <% when 'comment' then %>
+      <strong><%= link_to product_path(notification.product_id) do %>新着コメント<% end %></strong>がありました。
+    <% else %>
+      <strong><%= link_to product_path(notification.comment.product_id) do %>返信<% end %></strong>がありました。
+    <% end %>
+      <%= "(#{time_ago_in_words(notification.created_at)} 前)" %><p class="text-right"><%= link_to notification_path(notification.id), method: :delete, remote: true, class:"btn" do %>削除<i class="fas fa-trash"></i><% end %></p>
+  </li>
+  <% end %>
+</ul>

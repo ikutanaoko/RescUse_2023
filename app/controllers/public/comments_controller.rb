@@ -1,15 +1,52 @@
 class Public::CommentsController < ApplicationController
-  def index
+    before_action :authenticate_user!
+    before_action :is_matching_login_user, only: [:destroy]
+
+  def create
+    @product = Product.find(params[:product_id])
+    @comment = @product.comments.new(comment_params)
+    @comment.user_id = current_user.id
+    @comments = @product.comments
+    @comment_reply = @product.comments.new(comment_params)
+    if @comment.save
+      if @comment.parent_id.blank?
+        @product.create_notification_comment(current_user)
+      else
+        @comment.create_notification_reply(current_user,params[:comment][:notification_reply_id])
+        
+      end
+        flash.now[:notice] = "コメントの投稿に成功しました。"
+      @comment_reply = @product.comments.new
+      @comment = Comment.new
+      render :index
+    else
+      flash.now[:alert] = "コメントの投稿に失敗しました。"
+      render :index
+    end
+  end
+  
+
+  def destroy
+    @product = Product.find(params[:product_id])
+    @comment = Comment.find(params[:id])
+    @comments = @product.comments.order(created_at: :desc)
+    @comment_reply = @product.comments.new
+    if @comment.destroy
+      flash.now[:notice] = "コメントを削除しました。"
+      render :index
+    end
   end
 
-  def show
-  end
-  
-  def destroy
-  end
-  
-  def create
-  end
-  
-  
+  private
+    def comment_params
+      params.require(:comment).permit(:body, :user_id, :product_id, :parent_id)
+    end
+    
+    def is_matching_login_user
+      user = User.find(params[:id])
+      unless user.id == current_user.id
+        redirect_to post_images_path
+      end
+    end
+
 end

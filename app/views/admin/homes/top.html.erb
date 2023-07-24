@@ -1,2 +1,32 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h5 class="font-weight-bold ml-3">お問い合わせ履歴</h5>
+
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th></th>
+          <th>名前</th>
+          <th>連絡先</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @inquiries.each do |inquiry| %>
+      <tr>
+        <td><%= inquiry.created_at.strftime('%Y/%-m/%-d  %H:%M') %></td>
+        <td><%= inquiry.name %></td>
+        <td><%= inquiry.contact %></td>
+        <td style="width: 60%;"><%= inquiry.body %></td>
+      </tr>
+      </tbody>
+    <% end %>
+    </table>
+    
+    <div class="text-center mx-auto">
+    <hr>
+      <%= paginate @inquiries %>
+    </div>
+    
+  </div>  
+</div>

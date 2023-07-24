@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="https://kit.fontawesome.com/6bb66a36c5.js" crossorigin="anonymous"></script>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%# stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+    <%= favicon_link_tag('favicon.ico') %>
   </head>
   
   
@@ -15,14 +19,9 @@
     <%= render 'layouts/header' %>
     
     <main>
-      <div class="ml-5 mt-3 text-info">
-        <p id="notice"><%= notice %></p>
-      </div>
-      <div class="ml-5 mt-3 text-danger">
-        <p class="alert"><%= alert %></p>
-      </div>
-      <div class="container">
-    <%= yield %>
+      <%= render 'layouts/flash_message' %>
+      <div class="container mb-5 pb-5">
+        <%= yield %>
       </div>
     </main>
     

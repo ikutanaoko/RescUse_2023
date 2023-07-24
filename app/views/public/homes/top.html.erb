@@ -1,2 +1,8 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="row">
+  <div class="col-md-6 col- align-middle mx-auto border-success py-3 mt-5" style="background-color:#d3d3d3;">
+
+      ログインは<%= link_to "こちら", new_user_session_path %>から<br><br>
+      <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
+
+  </div>
+</div>

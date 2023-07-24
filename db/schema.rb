@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_04_140713) do
+ActiveRecord::Schema.define(version: 2023_07_15_054456) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 2023_07_04_140713) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "inquiries", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "contact", null: false
+    t.text "body", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.integer "visiter_id", null: false
     t.integer "visited_id", null: false
@@ -73,7 +81,7 @@ ActiveRecord::Schema.define(version: 2023_07_04_140713) do
     t.integer "giver_id", null: false
     t.string "name", null: false
     t.string "detail_page"
-    t.text "infomation", null: false
+    t.text "information", null: false
     t.integer "price", null: false
     t.integer "count", null: false
     t.boolean "is_closed", default: false, null: false
@@ -81,6 +89,16 @@ ActiveRecord::Schema.define(version: 2023_07_04_140713) do
     t.integer "taker_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_url"
+  end
+
+  create_table "read_counts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_read_counts_on_product_id"
+    t.index ["user_id"], name: "index_read_counts_on_user_id"
   end
 
   create_table "scores", force: :cascade do |t|
@@ -89,6 +107,7 @@ ActiveRecord::Schema.define(version: 2023_07_04_140713) do
     t.integer "passive_score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "department_id", null: false
     t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
@@ -106,7 +125,7 @@ ActiveRecord::Schema.define(version: 2023_07_04_140713) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
-    t.string "empeloyee_number", null: false
+    t.string "employee_number", null: false
     t.integer "department_id", null: false
     t.boolean "is_deleted", default: false, null: false
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -116,5 +135,7 @@ ActiveRecord::Schema.define(version: 2023_07_04_140713) do
   add_foreign_key "comments", "users"
   add_foreign_key "product_tags", "products"
   add_foreign_key "product_tags", "tags"
+  add_foreign_key "read_counts", "products"
+  add_foreign_key "read_counts", "users"
   add_foreign_key "scores", "users"
 end

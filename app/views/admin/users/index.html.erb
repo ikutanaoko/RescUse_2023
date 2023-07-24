@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <h5 class="font-weight-bold ml-3">社員一覧</h5>
+    <div class="ml-auto"><%= render 'admin/users/search', q: @q, url: search_admin_users_path %></div>
+
+    <%= render "admin/users/index", users: @users %>
+    
+    <div class="text-center mx-auto">
+    <hr>
+      <%= paginate @users %>
+    </div>
+    
+  </div>  
+</div>

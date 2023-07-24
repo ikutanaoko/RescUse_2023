@@ -1,0 +1,22 @@
+<h5>コメント　<%= comments.count %>件</h5>
+
+<%= render 'layouts/flash_message' %>
+<% if user_signed_in? %>
+  <%= render 'public/comments/form', product: @product, comment: @comment %>
+<% end %>
+
+<% comments.where(parent_id: nil).first(2).each do |comment| %>
+  <%= render 'public/comments/hide_comments', comment: comment, comment_reply: comment_reply, product: product %>
+<% end %>
+<% if comments.where(parent_id: nil).offset(2).any? %>
+  <div class="text-right mt-2">
+    <button type="button" class="btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
+      もっと見る...
+    </button>
+  </div>
+  <div class="collapse" id="collapseExample">
+    <% comments.where(parent_id: nil).offset(2).each do |comment| %>
+      <%= render 'public/comments/hide_comments', comment: comment, comment_reply: comment_reply, product: product %>
+    <% end %>
+  </div>
+<% end %>

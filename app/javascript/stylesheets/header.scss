@@ -1,0 +1,61 @@
+
+.logo_svg {
+  width: 200px ;
+  height: 50px ;
+}
+
+.header,.footer {
+  background-color: #E9FDF3;
+}
+
+.navbar-btn {
+  color: #008b8b;
+  display: block;
+  width: 115px;
+}
+
+
+#nav {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+#nav li {
+    list-style: none;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 2.8;
+
+}
+#nav li a {
+    text-decoration: none;
+}
+
+.drop-menu {
+    display: none;
+    margin-left: -40px;
+    position: absolute;
+    z-index: 1;
+    
+}
+.drop-menu li {
+  background-color: #1D1D1D;
+  opacity: 0.8;
+
+}
+
+.drop-menu-link {
+  color: #fff;
+  opacity: 1;
+}
+
+.banner-container {
+  background-color: #E9FDF3;  
+}
+
+.nav-item {
+  margin-left: auto;
+}
+

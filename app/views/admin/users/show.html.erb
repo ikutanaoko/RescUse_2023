@@ -1,2 +1,61 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <table class="table table-borderless">
+      <tr>
+        <th><%= @user.employee_number %></th>
+        <th><%= @user.name %></th>
+        <th><%= @user.department.name %></th>
+        <th><%= @user.status %></th>
+        <th><%= link_to '編集',edit_admin_user_path(@user) %></th>
+      </tr>
+    </table>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-6 userpage-content">
+      <h5 class="font-weight-bold ml-3">投稿履歴</h5>
+      <table class="table table-sm table-borderless">
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.created_at.strftime('%Y/%-m/%-d') %></td>
+          <td class="d-inline-block text-truncate", style="width: 130px;"><%= link_to product.name, admin_product_path(product) %></td>
+          <td>閲覧：<%= product.read_counts.count %>回</td>
+          <td>コメント：<%= product.comments.count %>件</td>
+        </tr>
+      <% end %>
+      </table>
+      <div class="row">
+        <div class="text-center mx-auto">
+          <hr>
+        <%= paginate @products, param_name: :products_page %>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="col-6 userpage-content">
+      <h5 class="font-weight-bold ml-3">コメント履歴</h5>
+
+      <% @comments.each do |comment| %>
+        <div class="row ml-5">
+          <%= comment.created_at.strftime('%Y/%-m/%-d') %></td>
+          <p class="d-inline-block text-truncate ml-2", style="width: 130px;"><%= link_to comment.product.name, admin_product_path(comment.product) %></p>
+          <div class="text-right">
+            <%= link_to"コメント削除", admin_product_comment_path(comment.product, comment), method: :delete %>
+          </div>
+        </div>
+        <div class="row ml-5">
+          <p><%= comment.body %></p>
+        </div>
+        <hr class="m-0">
+      <% end %>
+      <div class="row">
+        <div class="text-center mx-auto">
+          <hr>
+          <%= paginate @comments, param_name: :comments_page %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

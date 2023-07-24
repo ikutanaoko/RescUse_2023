@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        department: 所属部門
+        employee_number: 社員番号
+        
+      department:
+        name: 部門名
+        
+      tag:
+        name: 内容
+      
+      inquiry:
+        name: 名前
+        contact: 連絡先
+        body: 内容
+        
+      product: 
+        name: 製品名・型式
+        information: 備考
+        price: 価格
+        count: 数量
+        
