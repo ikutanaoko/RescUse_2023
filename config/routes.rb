@@ -56,6 +56,7 @@ end
 
   namespace :admin do
     get '/' => 'homes#top'
+    resources :inquiries, only: [:update]
     resources :departments, only: [:index,:show,:edit,:create,:update, :destroy]
     resources :products, only: [:index,:show,:edit,:update,:destroy] do
       collection do

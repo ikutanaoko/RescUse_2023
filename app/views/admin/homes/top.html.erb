@@ -5,10 +5,11 @@
     <table class="table table-sm">
       <thead>
         <tr>
-          <th></th>
-          <th>名前</th>
-          <th>連絡先</th>
-          <th>内容</th>
+          <th style="width: 15%;"></th>
+          <th class="text-center", style="width: 15%;">名前</th>
+          <th class="text-center", style="width: 15%;">連絡先</th>
+          <th class="text-center", style="width: 45%;">内容</th>
+          <th class="text-center", style="width: 10%;">対応</th>
         </tr>
       </thead>
       <tbody>
@@ -17,7 +18,18 @@
         <td><%= inquiry.created_at.strftime('%Y/%-m/%-d  %H:%M') %></td>
         <td><%= inquiry.name %></td>
         <td><%= inquiry.contact %></td>
-        <td style="width: 60%;"><%= inquiry.body %></td>
+        <td><%= inquiry.body %></td>
+        <td class="text-center">
+          <% if inquiry.checked == true %>
+            <%= link_to admin_inquiry_path(inquiry), method: :patch do %>
+              <i class="fa-regular fa-square-check"></i>
+            <% end %>
+          <% else %>
+            <%= link_to admin_inquiry_path(inquiry), method: :patch do %>
+              <i class="fa-regular fa-square"></i>
+            <% end %>
+          <% end %>
+        </td>
       </tr>
       </tbody>
     <% end %>
