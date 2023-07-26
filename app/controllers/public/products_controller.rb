@@ -105,7 +105,7 @@ class Public::ProductsController < ApplicationController
       product = Product.find(params[:id])
       user = product.giver
       unless user.id == current_user.id
-        redirect_to post_images_path
+        redirect_to users_path
       end
     end
 

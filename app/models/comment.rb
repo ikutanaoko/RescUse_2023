@@ -24,6 +24,11 @@ class Comment < ApplicationRecord
     if notification.valid?
     notification.save
     end
+        
+    if notification.visitor_id == notification.visited_id
+    notification.destroy
+    end
+
   end
   
 

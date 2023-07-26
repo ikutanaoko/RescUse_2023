@@ -41,14 +41,16 @@ default_scope -> { order(created_at: :desc) }
       visited_id: giver_id,
       action: 'comment'
       )
-
     #本人からの通知のコメントを作成しない場合以下を記入
-    if notification.visitor_id == notification.visited_id
-      notification.checked = true
-    end
     if notification.valid?
     notification.save
     end
+    
+    if notification.visitor_id == notification.visited_id
+    notification.destroy
+    
+    end
+
   end
   
   def self.ransackable_attributes(auth_object = nil)
