@@ -1,5 +1,10 @@
 <div class="row">
-  <h5 class="font-weight-bold">未開封引取募集備品一覧</h5>
+  <div class="d-flex col-10 item-index-bo">
+    <h5 class="font-weight-bold bg-light text-center">未開封引取募集備品一覧</h5>
+    <div class="ml-auto d-flex flex-row-reverse" >
+      <%= link_to "タグから探す", tags_path %>
+    </div>
+  </div>
 
   <%= render "index", products: @products %>
 
