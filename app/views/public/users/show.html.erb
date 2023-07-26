@@ -4,7 +4,7 @@
       <h5 class="font-weight-bold">新着通知</h5>
       <div id="mypage-notification"><%= render 'notification', notifications: @notifications %></div>
     </div>
-    
+
     <div class="mypage-content">
       <h5 class="font-weight-bold"></h5>
       <div class="container" style="width:100%">
@@ -21,11 +21,11 @@
       <div class="col-4 mx-0 mypage-content">
         <h5 class="font-weight-bold"><%= link_to "出品履歴", users_products_index_path %></h5>
       </div>
-      
+
       <div class="col-4 mx-0 mypage-content">
         <h5 class="font-weight-bold"><%= link_to "引取履歴", index_path %></h5>
       </div>
-      
+
       <div  class="col-4 mx-0 mypage-content">
         <h5 class="font-weight-bold">
           <%=link_to favorites_path do %>
@@ -43,7 +43,7 @@
         <%= link_to "もっと見る...", new_products_path %>
       </div>
     </div>
-    
+
     <div class="mypage-content">
       <h5 class="font-weight-bold">新着の開封済引取募集備品</h5>
       <%= render 'product', products: @used_products %>
