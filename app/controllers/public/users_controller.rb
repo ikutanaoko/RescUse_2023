@@ -5,23 +5,7 @@ class Public::UsersController < ApplicationController
     @new_products = Product.where(is_used:"false", is_closed:"false")
     @used_products = Product.where(is_used:"true", is_closed:"false")
     @notifications = current_user.passive_notifications
-    
-    departments = Department.all
-    @department_names = []
-    @department_active_score = []
-    @department_passive_score = []
-
-    departments.each do |department|
-      active_score = []
-      passive_score = []
-      @department_names << department[:name]
-      department.scores.each do |score|
-        active_score << score[:active_score]
-        passive_score << score[:passive_score]
-      end
-      @department_active_score << active_score.sum
-      @department_passive_score << passive_score.sum
-    end
+    @departments = Department.left_joins(:scores).group(:id).select(:id, :name, "COALESCE(SUM(`scores`.`active_score`), 0) AS sum_active_score", "COALESCE(SUM(`scores`.`passive_score`), 0) AS sum_passive_score").order(:id)
   end
 
   def edit
