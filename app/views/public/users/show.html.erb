@@ -4,11 +4,11 @@
       <h5 class="font-weight-bold">新着通知</h5>
       <div id="mypage-notification"><%= render 'notification', notifications: @notifications %></div>
     </div>
-    
+
     <div class="mypage-content">
       <h5 class="font-weight-bold"></h5>
       <div class="container" style="width:100%">
-        <% if @departments.present? %>
+        <% if @department_names.present? %>
           <canvas id="canvas"></canvas>
         <% else %>
           保存されている実績データがありません
@@ -21,11 +21,11 @@
       <div class="col-4 mx-0 mypage-content">
         <h5 class="font-weight-bold"><%= link_to "出品履歴", users_products_index_path %></h5>
       </div>
-      
+
       <div class="col-4 mx-0 mypage-content">
         <h5 class="font-weight-bold"><%= link_to "引取履歴", index_path %></h5>
       </div>
-      
+
       <div  class="col-4 mx-0 mypage-content">
         <h5 class="font-weight-bold">
           <%=link_to favorites_path do %>
@@ -43,7 +43,7 @@
         <%= link_to "もっと見る...", new_products_path %>
       </div>
     </div>
-    
+
     <div class="mypage-content">
       <h5 class="font-weight-bold">新着の開封済引取募集備品</h5>
       <%= render 'product', products: @used_products %>
@@ -67,21 +67,19 @@ window.onload = function() {
         options: complexChartOption
     });
 };
-</script>
-<script>
 
 var barChartData = {
-    labels: <%= raw @departments.map(&:name) %>,
+    labels: <%= raw @department_names %>,
     datasets: [
     {
         label: '不要になった件数',
-        data: <%= raw @departments.map(&:sum_active_score) %>,
+        data: <%= @department_active_score %>,
         borderColor : "rgba(254,97,132,0.8)",
         backgroundColor : "rgba(254,97,132,0.5)",
     },
     {
         label: '引き取り件数',
-        data: <%= raw @departments.map(&:sum_passive_score) %>,
+        data: <%= @department_passive_score %>,
         borderColor : "rgba(54,164,235,0.8)",
         backgroundColor : "rgba(54,164,235,0.5)",
     },

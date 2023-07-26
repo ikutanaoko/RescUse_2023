@@ -3,12 +3,12 @@ class Public::ProductsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
 
   def new_index
-    @products = Product.where(is_used:"false", is_closed:"false").page(params[:page])
+    @products = Product.where(is_used:false, is_closed:false).page(params[:page])
 
   end
 
   def used_index
-    @products = Product.where(is_used:"true", is_closed:"false").page(params[:page])
+    @products = Product.where(is_used:true, is_closed:false).page(params[:page])
 
 
   end
@@ -105,7 +105,7 @@ class Public::ProductsController < ApplicationController
       product = Product.find(params[:id])
       user = product.giver
       unless user.id == current_user.id
-        redirect_to post_images_path
+        redirect_to users_path
       end
     end
 

@@ -43,7 +43,8 @@ class Public::CommentsController < ApplicationController
     end
     
     def is_matching_login_user
-      user = User.find(params[:id])
+      comment = Comment.find(params[:id])
+      user = comment.user
       unless user.id == current_user.id
         redirect_to post_images_path
       end
