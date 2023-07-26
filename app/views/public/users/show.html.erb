@@ -8,7 +8,7 @@
     <div class="mypage-content">
       <h5 class="font-weight-bold"></h5>
       <div class="container" style="width:100%">
-        <% if @departments.present? %>
+        <% if @department_names.present? %>
           <canvas id="canvas"></canvas>
         <% else %>
           保存されている実績データがありません
@@ -69,17 +69,17 @@ window.onload = function() {
 };
 
 var barChartData = {
-    labels: <%= raw @departments.map(&:name) %>,
+    labels: <%= raw @department_names %>,
     datasets: [
     {
         label: '不要になった件数',
-        data: <%= raw @departments.map(&:sum_active_score) %>,
+        data: <%= @department_active_score %>,
         borderColor : "rgba(254,97,132,0.8)",
         backgroundColor : "rgba(254,97,132,0.5)",
     },
     {
         label: '引き取り件数',
-        data: <%= raw @departments.map(&:sum_passive_score) %>,
+        data: <%= @department_passive_score %>,
         borderColor : "rgba(54,164,235,0.8)",
         backgroundColor : "rgba(54,164,235,0.5)",
     },
