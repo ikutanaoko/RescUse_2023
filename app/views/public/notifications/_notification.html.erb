@@ -1,7 +1,7 @@
 <ul>
   <% notifications.each do |notification| %>
   <li>
-    <strong><%= notification.visiter.name %></strong>さんから
+    <strong><%= notification.visitor.name %></strong>さんから
     <% case notification.action %>
     <% when 'comment' then %>
       <strong><%= link_to product_path(notification.product_id) do %>新着コメント<% end %></strong>がありました。
