@@ -2,11 +2,11 @@
   <div class="row">
     <h5 class="mx-auto font-weight-bold">お問い合わせフォーム</h5>
   </div>  
+  
   <div class="row">
-      
     <div class="col-6 mx-auto">
     <%= render 'layouts/error_messages', obj: @inquiry %>
-    <%= form_with model: @inquiry, local:true do |f| %>
+    <%= form_with(model: @inquiry, url: inquiry_completion_path, local: true) do |f| %>
       <table class="table table-borderless">
         <thead>
           <th style="width: 40%"></th>
