@@ -19,6 +19,7 @@
           </th>
         </tr>
       </table>
+      
       <table class="table table-borderless">
         <tr>
           <th class="py-0">個数：<%= @product.count %></th>
@@ -38,6 +39,7 @@
 
       <div class="pt-0 pb-2 ml-2">備考：<%= @product.information %></div>
     </div>
+    
     <div class="row ml-1", style="width: 100%;">
       <h4>コメント</h4>
       <table class="table table-sm">
@@ -46,18 +48,17 @@
           <td><%= comment.created_at.strftime('%Y/%-m/%-d  %H:%M') %></td>
           <td><%= comment.user.name %>(<%= comment.user.department.name %>)</td>
           <td style="width: 60%;"><%= comment.body %></td>
-  
           <td><%= link_to"削除", admin_product_comment_path(comment.product, comment), method: :delete %></td>
         </tr>
         <% end %>
       </table>
     </div>
-  </div>    
+  </div>
+  
   <div class="row">
     <div class="text-center mx-auto">
       <hr>
       <%= paginate @comments %>
     </div>
   </div>
-
 </div>

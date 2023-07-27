@@ -3,10 +3,9 @@
     <% if @products.present? %>
       <h5 class="font-weight-bold ml-3">検索結果<%= @products.count %>件</h5>
       <div class="ml-auto"><%= render 'admin/products/search', q: @q, url: search_admin_products_path %></div>
-      <%= render "admin/products/index", products: @products %>
-
-      <div class="text-center mx-auto">
-      <hr>
+        <%= render "admin/products/index", products: @products %>
+        <div class="text-center mx-auto">
+        <hr>
         <%= paginate @products %>
       </div>
     <% else %>

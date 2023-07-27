@@ -96,18 +96,17 @@ class Public::ProductsController < ApplicationController
 
   private
 
-    def product_params
-    params.require(:product).permit(:giver_id, :name, :detail_page, :information, :price, :count,
-    :is_closed, :is_used, :taker_id, tag_ids: [])
-    end
+  def product_params
+  params.require(:product).permit(:giver_id, :name, :detail_page, :information, :price, :count,
+  :is_closed, :is_used, :taker_id, tag_ids: [])
+  end
 
-    def is_matching_login_user
-      product = Product.find(params[:id])
-      user = product.giver
-      unless user.id == current_user.id
-        redirect_to users_path
-      end
+  def is_matching_login_user
+    product = Product.find(params[:id])
+    user = product.giver
+    unless user.id == current_user.id
+      redirect_to users_path
     end
-
+  end
 
 end

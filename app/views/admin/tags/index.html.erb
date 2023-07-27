@@ -2,24 +2,27 @@
   <div class="row">
     <h5 class="font-weight-bold ml-3">タグ一覧・追加</h5>
   </div>
+  
   <div class="row ml-1">
     <%= render 'layouts/error_messages', obj: @tag %>
   </div>
-  <div>
+  
+  <div class="row">
     <%= form_with model: [:admin, @tag] do |f| %>
       <%= f.label :name, "タグ名", class:"mr-3" %>
         <%= f.text_field :name, class:"mr-3" %>
         <%= f.submit '追加' %>
     <% end %>
   </div>
+  
   <div class="row">
-  <div class="col-md-4">
-    <table class="table my-5">
-      <thead class="thead-light">
-        <tr>
-          <th><b></b></th>
-          <th></th>
-        </tr>
+    <div class="col-md-4">
+      <table class="table my-5">
+        <thead class="thead-light">
+          <tr>
+            <th><b></b></th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
           <% @tags.each do |tag| %>
@@ -30,5 +33,6 @@
           <% end %>
         </tbody>
       </table>
+    </div>
   </div>
 </div>

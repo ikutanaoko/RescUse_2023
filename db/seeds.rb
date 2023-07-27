@@ -20,5 +20,5 @@ User.create([ {name: '総務部部長', employee_number: '000001', department_id
               {name: '法務部部長', employee_number: '000007', department_id: '4', password: '111111'},
               {name: '法務部社員', employee_number: '000008', department_id: '4', password: '111111'},
               {name: '経理部部長', employee_number: '000009', department_id: '5', password: '111111'},
-              {name: '経理部部長', employee_number: '000010', department_id: '5', password: '111111'}
+              {name: '経理部社員', employee_number: '000010', department_id: '5', password: '111111'}
             ])

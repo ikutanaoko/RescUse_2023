@@ -13,7 +13,6 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments
   has_many :read_counts, dependent: :destroy
-
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
@@ -28,11 +27,9 @@ class User < ApplicationRecord
   def email_required?
     false
   end
-
   def email_changed?
     false
   end
-
   def will_save_change_to_email?
     false
   end
@@ -45,11 +42,9 @@ class User < ApplicationRecord
     end
   end
 
-
   def self.ransackable_associations(auth_object = nil)
     ["department"]
   end
-
   def self.ransackable_attributes(auth_object = nil)
     ["employee_number", "name"]
   end
@@ -62,14 +57,11 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
       user.department = Department.first
       user.name = "guestuser"
-
     end
   end
-
 
   def guest_user?
     employee_number == GUEST_USER_EMPLOYEE_NUMBER
   end
-
 
 end

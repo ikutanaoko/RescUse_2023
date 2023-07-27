@@ -17,15 +17,15 @@
         </tr>
   
         <tr>
-        <td><%= f.label :department_id, '所属部門' %></td>
-        <td><%= f.select :department_id, Department.pluck(:name, :id), { include_blank: "--選択してください--"} %></td>
+          <td><%= f.label :department_id, '所属部門' %></td>
+          <td><%= f.select :department_id, Department.pluck(:name, :id), { include_blank: "--選択してください--"} %></td>
         </tr>
 
         <tr>
           <td><%= f.label :password, 'パスワード' %><br>
-              <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> 文字以上)</em>
-              <% end %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> 文字以上)</em>
+            <% end %>
           </td>
           <td>
             <%= f.password_field :password, autocomplete: "new-password", class:"align-middle" %>
@@ -36,11 +36,10 @@
           <td><%= f.label :password_confirmation, 'パスワード確認用' %></td>
           <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
         </tr>
-
       </table>
+      
       <div class="action text-center"><%= f.submit "登録" %></div>
     <% end %>
     <%= render "public/shared/links" %>
-
   </div>
 </div>

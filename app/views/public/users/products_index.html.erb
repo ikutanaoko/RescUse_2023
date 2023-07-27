@@ -1,37 +1,45 @@
 <div class="row">
   
-<h5 class="font-weight-bold">出品履歴一覧</h5>
-<table class="table table-sm product-index">
-  <thead>
-    <tr class="text-center">
-      <th>投稿日</th>
-      <th>製品名・型式</th>
-      <th>公開状況</th>
-      <th>保存件数</th>
-      <th>閲覧回数</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @products.each do |product| %> 
-    <tr class="text-center">
-      <td><%= product.created_at.strftime('%Y/%-m/%-d') %></td>
-  　　<td class="d-inline-block text-truncate", style="width: 400px;" ><%= link_to product.name, product_path(product) %></td>
-      <td>
-        <% if product.is_closed? %>
-          <b class="open-product"><%= product.is_closed_text %></b>
-        <% else %>
-          <b class="closed-product"><%= product.is_closed_text %></b>
-        <% end %>
-      </td>
-      <td><%= product.favorites.count %></td>
-      <td><%= product.read_counts.count %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<div class="text-center mx-auto">
-  <hr>
-  <%= paginate @products %>
-</div>
+  <h5 class="font-weight-bold">出品履歴一覧</h5>
+  <table class="table table-sm product-index">
+    <thead>
+      <tr class="text-center">
+        <th>投稿日</th>
+        <th>製品名・型式</th>
+        <th>公開状況</th>
+        <th>保存件数</th>
+        <th>閲覧回数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %> 
+        <tr class="text-center">
+          <td>
+            <%= product.created_at.strftime('%Y/%-m/%-d') %>
+          </td>
+      　　<td class="d-inline-block text-truncate", style="width: 400px;" >
+      　　    <%= link_to product.name, product_path(product) %>
+      　　  </td>
+          <td>
+            <% if product.is_closed? %>
+              <b class="open-product"><%= product.is_closed_text %></b>
+            <% else %>
+              <b class="closed-product"><%= product.is_closed_text %></b>
+            <% end %>
+          </td>
+          <td>
+            <%= product.favorites.count %>
+          </td>
+          <td>
+            <%= product.read_counts.count %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <div class="text-center mx-auto">
+    <hr>
+    <%= paginate @products %>
+  </div>
 </div>

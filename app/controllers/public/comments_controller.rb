@@ -1,6 +1,6 @@
 class Public::CommentsController < ApplicationController
-    before_action :authenticate_user!
-    before_action :is_matching_login_user, only: [:destroy]
+  before_action :authenticate_user!
+  before_action :is_matching_login_user, only: [:destroy]
 
   def create
     @product = Product.find(params[:product_id])
@@ -13,9 +13,8 @@ class Public::CommentsController < ApplicationController
         @product.create_notification_comment(current_user)
       else
         @comment.create_notification_reply(current_user,params[:comment][:notification_reply_id])
-        
       end
-        flash.now[:notice] = "コメントの投稿に成功しました。"
+      flash.now[:notice] = "コメントの投稿に成功しました。"
       @comment_reply = @product.comments.new
       @comment = Comment.new
       render :index
@@ -25,7 +24,6 @@ class Public::CommentsController < ApplicationController
     end
   end
   
-
   def destroy
     @product = Product.find(params[:product_id])
     @comment = Comment.find(params[:id])
@@ -38,16 +36,17 @@ class Public::CommentsController < ApplicationController
   end
 
   private
-    def comment_params
-      params.require(:comment).permit(:body, :user_id, :product_id, :parent_id)
+
+  def comment_params
+    params.require(:comment).permit(:body, :user_id, :product_id, :parent_id)
+  end
+  
+  def is_matching_login_user
+    comment = Comment.find(params[:id])
+    user = comment.user
+    unless user.id == current_user.id
+      redirect_to users_path
     end
-    
-    def is_matching_login_user
-      comment = Comment.find(params[:id])
-      user = comment.user
-      unless user.id == current_user.id
-        redirect_to post_images_path
-      end
-    end
+  end
 
 end

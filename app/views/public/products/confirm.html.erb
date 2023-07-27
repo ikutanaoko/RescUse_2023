@@ -1,7 +1,9 @@
 <h2 class="pt-5">下記備品の引き取りが完了しましたか？</h2>
-    <p>
-      受け渡し完了後に、引き取り担当者がこちらをクリックしてください。<br>
-      受け渡しが未だの場合は「戻る」ボタンより前の画面に戻ってください。
-    </p>
-    <%= link_to "戻る", product_path(@product), class:"btn btn-primary btn-md" %>
-    <%= link_to "引き取り完了",  take_over_product_path(@product), method: :patch, class:"btn btn-danger btn-md" %>
+<div>
+  <p>
+    受け渡し完了後に、引き取り担当者がこちらをクリックしてください。<br>
+    受け渡しが未だの場合は「戻る」ボタンより前の画面に戻ってください。
+  </p>
+  <%= link_to "戻る", product_path(@product), class:"btn btn-primary btn-md" %>
+  <%= link_to "引き取り完了",  take_over_product_path(@product), method: :patch, class:"btn btn-danger btn-md" %>
+</div>

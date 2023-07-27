@@ -9,14 +9,14 @@
       </tr>
     </thead>
     <tbody>
-    <% products.each do |product| %> 
-      <tr class="text-center">
-        <td><%= product.created_at.strftime('%Y/%-m/%-d') %></td>
-        <td class="d-inline-block text-truncate", style="width: 200px;"><%=link_to product.name, product_path(product) %></td>
-        <td><%= product.price.to_s(:delimited) %></td>
-    　　<td><%= product.count %></td>
-        <td class="d-inline-block text-truncate", style="width: 400px;"><%= product.information %></td>
-      </tr>
+      <% products.each do |product| %> 
+        <tr class="text-center">
+          <td><%= product.created_at.strftime('%Y/%-m/%-d') %></td>
+          <td class="d-inline-block text-truncate", style="width: 200px;"><%=link_to product.name, product_path(product) %></td>
+          <td><%= product.price.to_s(:delimited) %></td>
+      　　<td><%= product.count %></td>
+          <td class="d-inline-block text-truncate", style="width: 400px;"><%= product.information %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>

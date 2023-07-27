@@ -49,5 +49,4 @@ class Admin::DepartmentsController < ApplicationController
   params.require(:department).permit(:name)
   end
 
-
 end

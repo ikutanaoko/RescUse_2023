@@ -3,65 +3,70 @@
     <div class="col-md-6 col-12 pl-0">
       <div class="row">
         <div class="col-4">
-        <h3 class="font-weight-bold mx-3">備品詳細</h3>
+          <h3 class="font-weight-bold mx-3">備品詳細</h3>
         </div>
+        
         <div class="col-4">
-        <h3>
-        <% if @product.status == "未開封" %>
-          <b class="new-product"><%= @product.status %></b>
-        <% else %>
-          <b class="used-product"><%= @product.status %></b>
-        <% end %>
-        </h3>
+          <h3>
+          <% if @product.status == "未開封" %>
+            <b class="new-product"><%= @product.status %></b>
+          <% else %>
+            <b class="used-product"><%= @product.status %></b>
+          <% end %>
+          </h3>
         </div>
+        
         <diV class="col-4">
           <h3 id="favorite_buttons">
           <%= render "public/favorites/favorite-btn", product: @product %>
           </h3>
         </diV>
       </div>
+      
       <diV class=" product-detail mt-2 py-2">
-      <table class="table table-borderless table-sm mb-0">
-        <thead>
+        <table class="table table-borderless table-sm mb-0">
+          <thead>
+  
+          </thead>
+          <tbody>
+            <tr>
+              <th class="align-middle">型式・品名</th><td style="width: 300px;"><%= @product.name %></td>
+            </tr>
+            <tr>
+              <th>税抜き価格</th><td><%= @product.price.to_s(:delimited) %>円<td>
+            </tr>
+            <tr>
+              <th>個数</th><td><%= @product.count %><td>
+            </tr>
+            <tr>
+              <th>備考</th>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="p-3", style="min-height: 100px;"><%= @product.information %></div>
 
-        </thead>
-        <tbody>
-          <tr>
-            <th class="align-middle">型式・品名</th><td style="width: 300px;"><%= @product.name %></td>
-          </tr>
-          <tr>
-            <th>税抜き価格</th><td><%= @product.price.to_s(:delimited) %>円<td>
-          </tr>
-          <tr>
-            <th>個数</th><td><%= @product.count %><td>
-          </tr>
-          <tr>
-            <th>備考</th>
-          </tr>
-        </tbody>
-      </table>
-      <div class="p-3", style="min-height: 100px;"><%= @product.information %></div>
-
-      <div>
-        <% @tags.each do |tag| %>
-          <i class="fas fa-tag pl-3"></i><%= link_to tag.name, tags_path(id: tag.id) %>
-        <% end %>
-      </div>
-      <table class="my-1">
-        <% if @product.image_url.present? %>
-          <tr >
-            <td class="p-3"><%= image_tag @product.image_url, size: "100x100" %></td>
-            <td class="pl-3"><%= link_to "楽天市場で類似商品の詳細を確認する", @product.detail_page, target: :_blank, rel: "noopener noreferrer" %></td>
-          </tr>
-        <% end %>
+        <div>
+          <% @tags.each do |tag| %>
+            <i class="fas fa-tag pl-3"></i><%= link_to tag.name, tags_path(id: tag.id) %>
+          <% end %>
+        </div>
+        
+        <table class="my-1">
+          <% if @product.image_url.present? %>
+            <tr >
+              <td class="p-3"><%= image_tag @product.image_url, size: "100x100" %></td>
+              <td class="pl-3"><%= link_to "楽天市場で類似商品の詳細を確認する", @product.detail_page, target: :_blank, rel: "noopener noreferrer" %></td>
+            </tr>
+          <% end %>
           <tr>
             <td></td>
             <td class="text-right"><%= @product.created_at.strftime('%Y/%-m/%-d') %>出品</td>
           </tr>
-
-      </table>
+        </table>
       </diV>
-        <table class="table-sm">
+        
+      <table class="table-sm">
         <!--投稿者の画面に表示-->
         <% if @product.giver_id == current_user.id %>
           <tr>
@@ -75,22 +80,20 @@
             <% end %>
           </tr>
         <!--ここまで-->
+        <% elsif @product.is_closed == false %>
           <tr>
-          <% elsif @product.is_closed == false %>
             <%= link_to "引取完了報告", confirm_product_path, class: "btn btn-info" %>
-          <% end %>
           </tr>
-        </table>
+        <% end %>
+      </table>
 
-        <div class="d-flex">
-          <div class="ml-auto">
+      <div class="d-flex">
+        <div class="ml-auto">
           <!-- Rakuten Web Services Attribution Snippet FROM HERE -->
           	<a href="https://webservice.rakuten.co.jp/" target="_blank"><img src="https://webservice.rakuten.co.jp/img/credit/200709/credit_22121.gif" border="0" alt="Rakuten Web Service Center" title="Rakuten Web Service Center" width="221" height="21"/></a>
       　   <!-- Rakuten Web Services Attribution Snippet TO HERE -->
-            </tr>
-          </div>
         </div>
-
+      </div>
     </div>
     
     <div class="col-md-5 offset-md-1 col-12 mt-5">

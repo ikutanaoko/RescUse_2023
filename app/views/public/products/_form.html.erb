@@ -1,14 +1,14 @@
 
   <div class="col-6 mx-auto">
-  <%= render 'layouts/error_messages', obj: product %>
-  <%= form_with model: product, local:true do |f| %>
+    <%= render 'layouts/error_messages', obj: product %>
+    
+    <%= form_with model: product, local:true do |f| %>
     <table class="table table-borderless">
       <thead>
         <th style="width: 35%"></th>
         <th style="width: 65%"></th>
       </thead>
       <tbody>
-
         <tr class="form-group">
           <td><%= f.label :name, '製品名/型式' %></td>
           <td><%= f.text_field :name, class: "col-12" %></td>
@@ -30,21 +30,22 @@
         </tr>
 
         <tr class="form-group">
-          <td>
-            <%= f.label :tag_ids, 'タグ' %>
-          </td>
+          <td><%= f.label :tag_ids, 'タグ' %></td>
           <td>
             <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
-            <span style="display: inline-block;"><%= b.check_box %><%= b.label %></span>
+              <span style="display: inline-block;"><%= b.check_box %><%= b.label %></span>
             <% end %>
           </td>
         </tr>
-
+      <!-- 新規投稿の場合は備品状況のステータスを選択 -->
       <% unless local_assigns[:edit].present? %>
-
         <tr class="form-group">
-          <td><%= f.label :is_used, '備品状況' %></td>
-          <td><%= f.radio_button :is_used, false %>
+          <td>
+            <%= f.label :is_used, '備品状況' %>
+          </td>
+          
+          <td>
+            <%= f.radio_button :is_used, false %>
             <%= f.label :is_used, '未開封', value: false %>
             <%= f.radio_button :is_used, true %>
             <%= f.label :is_used, '開封済', value: true %>
@@ -53,6 +54,7 @@
       <% end %>
       </tbody>
     </table>
+    
     <div class="text-center mb-5">
       <% if local_assigns[:edit].present? %>
         <%= f.submit "変更を保存", class: 'btn btn-success align-center px-4 py-2' %>
@@ -60,7 +62,5 @@
         <%= f.submit "新規登録", class: 'btn btn-success align-center px-4 py-2' %>
       <% end %>
     </div>
-
   <% end %>
-
-  </div>
+</div>

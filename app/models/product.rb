@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-default_scope -> { order(created_at: :desc) }
+  default_scope -> { order(created_at: :desc) }
   
   belongs_to :giver, class_name: 'User', foreign_key: :giver_id
   belongs_to :taker, class_name: 'User', foreign_key: :taker_id, optional: true
@@ -41,21 +41,18 @@ default_scope -> { order(created_at: :desc) }
       visited_id: giver_id,
       action: 'comment'
       )
-    #本人からの通知のコメントを作成しない場合以下を記入
     if notification.valid?
     notification.save
     end
-    
+
+    #本人からのコメント通知は削除する
     if notification.visitor_id == notification.visited_id
     notification.destroy
-    
     end
-
   end
   
   def self.ransackable_attributes(auth_object = nil)
     ["name"]
   end
-
 
 end

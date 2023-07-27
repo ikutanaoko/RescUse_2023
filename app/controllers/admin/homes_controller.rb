@@ -5,5 +5,4 @@ class Admin::HomesController < ApplicationController
     @inquiries = Inquiry.page(params[:page])
   end
 
-
 end

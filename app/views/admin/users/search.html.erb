@@ -2,16 +2,19 @@
   <div class="row">
     <% if @users.present? %>
       <h5 class="font-weight-bold ml-3">検索結果<%= @users.count %>件</h5>
-      <div class="ml-auto"><%= render 'admin/users/search', q: @q, url: search_admin_users_path %></div>
+      <div class="ml-auto">
+        <%= render 'admin/users/search', q: @q, url: search_admin_users_path %>
+      </div>
       <%= render "admin/users/index", users: @users %>
-  
       <div class="text-center mx-auto">
-      <hr>
+        <hr>
         <%= paginate @users %>
       </div>
     <% else %>
       <h5 class="font-weight-bold ml-3">検索結果はありません</h5>
-      <div class="ml-auto"><%= render 'admin/users/search', q: @q, url: search_admin_users_path %></div>
+      <div class="ml-auto">
+        <%= render 'admin/users/search', q: @q, url: search_admin_users_path %>
+      </div>
     <% end %>
   </div>  
 </div>

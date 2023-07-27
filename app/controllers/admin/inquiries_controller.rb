@@ -11,5 +11,4 @@ class Admin::InquiriesController < ApplicationController
     end
   end
   
-  
 end

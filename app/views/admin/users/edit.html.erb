@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
     <h5 class="font-weight-bold ml-3">従業員情報編集画面</h5>
-  </div>  
+  </div> 
+  
   <div class="row">
     <div class="col">
       <%= form_with model: @user, url: admin_user_path do |f| %>
@@ -21,12 +22,12 @@
         </div>
         
         <div class="field">
-      
             <%= f.radio_button :is_deleted, false %>
             <%= f.label :is_deleted, '有効', value: false %>
             <%= f.radio_button :is_deleted, true %>
             <%= f.label :is_deleted, '無効', value: true %>
         </div>
+        
         <div class="actions">
           <%= f.submit "保存" %>
         </div>

@@ -8,13 +8,13 @@
     </tr>
   </thead>
   <tbody>
-  <% @users.each do |user| %>
-  <tr>
-    <td><%= user.employee_number %></td>
-    <td><%= link_to user.name,admin_user_path(user) %></td>
-    <td><%= user.department.name %></td>
-    <td><%= user.status %></td>
-  </tr>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.employee_number %></td>
+        <td><%= link_to user.name,admin_user_path(user) %></td>
+        <td><%= user.department.name %></td>
+        <td><%= user.status %></td>
+      </tr>
+    <% end %>
   </tbody>
-<% end %>
 </table>

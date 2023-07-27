@@ -2,18 +2,19 @@
   <div class="row">
     <h5 class="font-weight-bold ml-3">部門一覧・追加</h5>
   </div>
-    <div class="row ml-1">
-      <%= render 'layouts/error_messages', obj: @department %>
-    </div>
-    <div>
-      <%= form_with model: [:admin, @department] do |f| %>
-        <%= f.label :name, "部門名", class:"mr-3" %>
-          <%= f.text_field :name, class:"mr-3" %>
-          <%= f.submit '追加' %>
-      <% end %>
-    </div>
+  <div class="row ml-1">
+    <%= render 'layouts/error_messages', obj: @department %>
+  </div>
   
-    <div class="row">
+  <div>
+    <%= form_with model: [:admin, @department] do |f| %>
+      <%= f.label :name, "部門名", class:"mr-3" %>
+        <%= f.text_field :name, class:"mr-3" %>
+        <%= f.submit '追加' %>
+    <% end %>
+  </div>
+
+  <div class="row">
     <div class="col-md-4">
       <table class="table my-5">
         <thead class="thead-light">
@@ -31,6 +32,6 @@
             <% end %>
           </tbody>
         </table>
-    </div>
+      </div>
   </div>  
 </div>

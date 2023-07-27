@@ -3,6 +3,8 @@
     <%= f.text_area :body, rows: '1', class:"form-control" %>
     <%= f.hidden_field :parent_id,value: comment.id %>
     <%= f.hidden_field :notification_reply_id,value: ( comment.replies.first&.id || comment.id )%>
-    <div class="text-right"><%= f.submit "返信する", class:"mt-1" %></div>
+    <div class="text-right">
+      <%= f.submit "返信する", class:"mt-1" %>
+    </div>
   </div>
 <% end %>

@@ -6,6 +6,6 @@ class Admin::CommentsController < ApplicationController
     comment.destroy
     flash.now[:notice] = "コメントを削除しました。"
     redirect_back(fallback_location: root_path)
-
   end
+  
 end

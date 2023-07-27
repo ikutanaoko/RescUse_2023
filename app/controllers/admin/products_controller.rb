@@ -1,6 +1,5 @@
 class Admin::ProductsController < ApplicationController
   before_action :authenticate_admin!
-
   
   def index
     @products = Product.page(params[:page]).per(20)
@@ -12,7 +11,6 @@ class Admin::ProductsController < ApplicationController
     @comments = @product.comments.page(params[:page])
     @tags = @product.tags
   end
-
 
   def update
     product = Product.find(params[:id])
@@ -28,9 +26,8 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-  params.require(:product).permit(:giver_id, :name, :detail_page, :information, :price, :count,
-  :is_closed, :is_used, :taker_id, tag_ids: [])
+    params.require(:product).permit(:giver_id, :name, :detail_page, :information, :price, :count,
+    :is_closed, :is_used, :taker_id, tag_ids: [])
   end
-
 
 end

@@ -6,7 +6,8 @@
     <div class="col d-flex justify-content-end text-secondary">
       <%= comment.created_at.strftime('%Y/%-m/%-d %H:%M') %>
     </div>  
-  </div> 
+  </div>
+  
   <div class="ml-3">
     <%= comment.body %>
     <% if comment.user == current_user %>
@@ -16,17 +17,19 @@
     <% end %>
   </div>
   <hr>
-
-  <% comment.replies.reverse_each do |reply| %>
-    <div class="container">
+  
+  <div class="container">
+    <% comment.replies.reverse_each do |reply| %>
       <div class="row d-flex align-items-center">
         <div class="col text-secondary">
           <%= reply.user.name %>(<%= reply.user.department.name %>)　
         </div>
+        
         <div class="col d-flex justify-content-end text-secondary">
           <%= reply.created_at.strftime('%Y/%-m/%-d %H:%M') %>
         </div>  
-      </div>    
+      </div>
+      
       <div class="ml-3">
         <%= reply.body %>
         <% if reply.user == current_user %>
@@ -35,8 +38,8 @@
           </div>
         <% end %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
   <%= render 'public/comments/reply_form', comment: comment, comment_reply: comment_reply, product: product %>　
   <hr>
 </div>

@@ -1,7 +1,4 @@
 <div class="row">
-
-
-
   <div class="mx-auto">
     <hr>
     <hr>
@@ -11,38 +8,36 @@
     </p>
     <hr>
     <hr>
-    <%= form_with url: reference_product_path, method: :get, local:true do |f| %>
     <div class="d-flex form-group">
-      <%= f.text_field :keyword, value: params[:keyword] %>
-      <%= f.submit '製品を検索' %>
-      <div class="ml-auto">
-    	<!-- Rakuten Web Services Attribution Snippet FROM HERE -->
-    	<a href="https://webservice.rakuten.co.jp/" target="_blank"><img src="https://webservice.rakuten.co.jp/img/credit/200709/credit_22121.gif" border="0" alt="Rakuten Web Service Center" title="Rakuten Web Service Center" width="221" height="21"/></a>
-　    <!-- Rakuten Web Services Attribution Snippet TO HERE -->
-      </div>
+      <%= form_with url: reference_product_path, method: :get, local:true do |f| %>
+        <%= f.text_field :keyword, value: params[:keyword] %>
+        <%= f.submit '製品を検索' %>
+        <div class="ml-auto">
+        	<!-- Rakuten Web Services Attribution Snippet FROM HERE -->
+        	<a href="https://webservice.rakuten.co.jp/" target="_blank"><img src="https://webservice.rakuten.co.jp/img/credit/200709/credit_22121.gif" border="0" alt="Rakuten Web Service Center" title="Rakuten Web Service Center" width="221" height="21"/></a>
+    　     <!-- Rakuten Web Services Attribution Snippet TO HERE -->
+        </div>
+      <% end %>
     </div>
-    <% end %>
 
     <% if @items.present? %>
-    <%= form_with model: @product, local:true do |f| %>
-    <table class="table">
-        <% @items.first(5).each do |item| %>
-          <tr class="form-group">
-            <% value = "#{item['mediumImageUrls'][0]} #{item.url}" %>
-            <td><%= f.radio_button :selected_item, value %></td>
-            <td><%= image_tag (item['mediumImageUrls'][0]), size: "100x100" %></td>
-            <td><%= link_to item.name, "#{item.url}", target: :_blank, rel: "noopener noreferrer" %></td>
-          </tr>
-        <% end %>
-
-    </table>
-    <div class="text-right">
-    <%= f.submit "保存" %>
-    <%= link_to '保存せず終了', product_path(@product) %>
-    </div>
-    <% end %>
+      <%= form_with model: @product, local:true do |f| %>
+        <table class="table">
+          <% @items.first(5).each do |item| %>
+            <tr class="form-group">
+              <% value = "#{item['mediumImageUrls'][0]} #{item.url}" %>
+              <td><%= f.radio_button :selected_item, value %></td>
+              <td><%= image_tag (item['mediumImageUrls'][0]), size: "100x100" %></td>
+              <td><%= link_to item.name, "#{item.url}", target: :_blank, rel: "noopener noreferrer" %></td>
+            </tr>
+          <% end %>
+        </table>
+        <div class="text-right">
+          <%= f.submit "保存" %>
+          <%= link_to '保存せず終了', product_path(@product) %>
+        </div>
+      <% end %>
     <% end %>
   </div>
-
 </div>
 

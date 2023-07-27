@@ -13,32 +13,31 @@
         </tr>
       </thead>
       <tbody>
-      <% @inquiries.each do |inquiry| %>
-      <tr>
-        <td><%= inquiry.created_at.strftime('%Y/%-m/%-d  %H:%M') %></td>
-        <td><%= inquiry.name %></td>
-        <td><%= inquiry.contact %></td>
-        <td><%= inquiry.body %></td>
-        <td class="text-center">
-          <% if inquiry.checked == true %>
-            <%= link_to admin_inquiry_path(inquiry), method: :patch do %>
-              <i class="fa-regular fa-square-check"></i>
-            <% end %>
-          <% else %>
-            <%= link_to admin_inquiry_path(inquiry), method: :patch do %>
-              <i class="fa-regular fa-square"></i>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
+        <% @inquiries.each do |inquiry| %>
+          <tr>
+            <td><%= inquiry.created_at.strftime('%Y/%-m/%-d  %H:%M') %></td>
+            <td><%= inquiry.name %></td>
+            <td><%= inquiry.contact %></td>
+            <td><%= inquiry.body %></td>
+            <td class="text-center">
+              <% if inquiry.checked == true %>
+                <%= link_to admin_inquiry_path(inquiry), method: :patch do %>
+                  <i class="fa-regular fa-square-check"></i>
+                <% end %>
+              <% else %>
+                <%= link_to admin_inquiry_path(inquiry), method: :patch do %>
+                  <i class="fa-regular fa-square"></i>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
-    <% end %>
     </table>
-    
+  
     <div class="text-center mx-auto">
-    <hr>
+      <hr>
       <%= paginate @inquiries %>
     </div>
-    
   </div>  
 </div>
