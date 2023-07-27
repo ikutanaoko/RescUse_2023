@@ -3,19 +3,20 @@ class Public::InquiriesController < ApplicationController
     @inquiry = Inquiry.new
   end
   
-  def create
+  
+  def completion
     @inquiry = Inquiry.new(inquiry_params)
+    #保存された場合は内容を表示する
     if @inquiry.save
-      flash[:notice] = "お問い合わせを承りました。"
-      redirect_to  inquiry_completion_path
+      flash[:notice] = "下記内容にてお問い合わせを承りました。"
+      @name = @inquiry.name
+      @contact = @inquiry.contact
+      @body = @inquiry.body
+    #保存されない場合はフォームがある画面を表示
     else
       @inquiry_new = Inquiry.new
       render :new
     end
-  end
-  
-  def completion
-    
   end
   
   private
