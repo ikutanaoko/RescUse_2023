@@ -39,18 +39,12 @@
 
     <div class="mypage-content">
       <h5 class="font-weight-bold">新着の未開封引取募集備品</h5>
-      <%= render 'product', products: @new_products %>
-      <div class="text-right">
-        <%= link_to "もっと見る...", new_products_path %>
-      </div>
+      <%= render 'product', products: @new_products, url: new_products_path  %>
     </div>
 
     <div class="mypage-content">
       <h5 class="font-weight-bold">新着の開封済引取募集備品</h5>
-      <%= render 'product', products: @used_products %>
-      <div class="text-right">
-        <%= link_to "もっと見る...", used_products_path %>
-      </div>
+      <%= render 'product', products: @used_products, url: used_products_path%>
     </div>
   </div>
 </div>
