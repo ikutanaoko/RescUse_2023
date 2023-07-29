@@ -1,20 +1,20 @@
 <table class="table table-sm">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>投稿日</th>
-      <th>投稿者</th>
-      <th>製品名・型式</th>
-      <th></th>
+      <th style="width: 5%;" >ID</th>
+      <th style="width: 15%;">投稿日</th>
+      <th style="width: 20%;">投稿者</th>
+      <th style="width: 50%;">製品名・型式</th>
+      <th style="width: 10%;"></th>
     </tr>
   </thead>
   <tbody>
     <% products.each do |product| %>
       <tr>
         <td><%= product.id %></td>
-        <td><%= product.created_at.strftime('%Y/%-m/%-d') %></td>
+        <td><%= product.created_at.strftime('%Y/%-m/%-d %H:%M') %></td>
         <td><%= link_to product.giver.name, admin_user_path(product.giver_id) %>(<%= product.giver.department.name %>)</td>
-        <td class="d-inline-block text-truncate", style="width: 300px;"><%= link_to product.name, admin_product_path(product) %></td>
+        <td class="d-inline-block text-truncate", style="width: 560px;"><%= link_to product.name, admin_product_path(product) %></td>
         <td><%= product.is_closed_text %></td>
       </tr>
     <% end %>
