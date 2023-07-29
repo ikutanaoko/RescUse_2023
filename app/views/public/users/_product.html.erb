@@ -1,10 +1,14 @@
 <table class="table table-borderless table-sm">
   <% products.first(3).each do |product| %>
   <tr>
-    <th><%=link_to product.name, product_path(product) %>:</th>
+    <th class="d-inline-block text-truncate", style="width: 150px;"><%=link_to product.name, product_path(product) %>:</th>
     <td class="d-inline-block text-truncate", style="width: 350px;"><%= product.information %></td>
     <td><%= product.created_at.strftime('%-m/%-d %H:%M') %></td>
   </tr>
   <% end %>
 </table>
-
+<% if products.offset(3).any? %>
+  <div class="text-right">
+    <%= link_to "もっと見る...", url %> 
+  </div>
+<% end %>
