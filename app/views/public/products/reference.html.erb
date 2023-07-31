@@ -27,7 +27,11 @@
             <tr class="form-group">
               <% value = "#{item['mediumImageUrls'][0]} #{item.url}" %>
               <td><%= f.radio_button :selected_item, value %></td>
-              <td><%= image_tag (item['mediumImageUrls'][0]), size: "100x100" %></td>
+              <td>
+                <% if item['mediumImageUrls'][0].present? %>
+                  <%= image_tag (item['mediumImageUrls'][0]), size: "100x100" %>
+                <% end %>
+              </td>
               <td><%= link_to item.name, "#{item.url}", target: :_blank, rel: "noopener noreferrer" %></td>
             </tr>
           <% end %>
