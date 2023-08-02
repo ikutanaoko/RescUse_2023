@@ -1,11 +1,30 @@
 <header class="header shadow-sm">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container header-nav-box">
-      <div>
-        <%= link_to root_path do %>
-          <div class="svg_wrapper">
-            <%= embedded_svg('RescUse_black_1.svg', class: 'logo_svg') %>
-          </div>
+      <div class="logo">
+        <!-- 社員ログイン時　-->
+        <% if user_signed_in? %>
+          <%= link_to users_path do %>
+            <div class="svg_wrapper">
+              <%= embedded_svg('RescUse_black_1.svg', class: 'logo_svg') %>
+            </div>
+          <% end %>
+
+        <!-- 管理者ログイン時　-->
+        <% elsif admin_signed_in? %>
+          <%= link_to admin_path do %>
+            <div class="svg_wrapper">
+              <%= embedded_svg('RescUse_black_1.svg', class: 'logo_svg') %>
+            </div>
+          <% end %>
+        
+        <!-- ログイン前　-->
+        <% else %>
+          <%= link_to root_path do %>
+            <div class="svg_wrapper">
+              <%= embedded_svg('RescUse_black_1.svg', class: 'logo_svg') %>
+            </div>
+          <% end %>
         <% end %>
       </div>
 
