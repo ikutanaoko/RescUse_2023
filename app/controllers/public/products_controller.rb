@@ -1,6 +1,6 @@
 class Public::ProductsController < ApplicationController
   before_action :authenticate_user!
-  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :is_matching_login_user, only: [:edit, :update, :update_status]
 
   def new_index
     @products = Product.where(is_used:false, is_closed:false).page(params[:page])
